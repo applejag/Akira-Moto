@@ -32,29 +32,33 @@ public class WeaponScript : MonoBehaviour {
 
 #endif
 
-    public void Attack(bool isEnemy) {
+	// Return true if it attacked, false if it can't (yet)
+    public bool Attack(bool isEnemy) {
 		if (canAttack) {
 			shootCooldown = shootingRate;
 			
 			// Create a new shot
-			var shotTransform = Instantiate(shotPrefab) as Transform;
+			var shotTransform = Instantiate (shotPrefab) as Transform;
 			
 			// Assign position
 			shotTransform.position = transform.position;
 			
 			// The is enemy property
-			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
+			ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript> ();
 			if (shot != null) {
 				shot.isEnemyShot = isEnemy;
 			}
 			
             
 			// Make the weapon shot always towards it
-			MoverScript move = shotTransform.gameObject.GetComponent<MoverScript>();
+			MoverScript move = shotTransform.gameObject.GetComponent<MoverScript> ();
 			if (move != null) {
-                move.angle = angleOverride;
+				move.angle = angleOverride;
 			}
-            
+
+			return true;
+		} else {
+			return false;
 		}
 	}
 	

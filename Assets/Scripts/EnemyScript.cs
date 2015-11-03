@@ -3,14 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using ExtensionMethods;
 
-public class ShooterScript : MonoBehaviour {
+public class EnemyScript : MonoBehaviour {
 
     public List<WeaponScript> weapons = new List<WeaponScript>();
 	public MoverScript moverScript;
 	public Collider2D col;
 	public Renderer ren;
-	[Header("Settings")]
-    public bool isEnemy = true;
 
 	private bool hasSpawned = false;
 	
@@ -23,9 +21,13 @@ public class ShooterScript : MonoBehaviour {
 		// Check if the enemy has spawned
 		if (hasSpawned) {
 			// Auto-fire
+			bool success = false;
 			foreach (var weapon in weapons) {
-				weapon.Attack(isEnemy);
+				success |= weapon.Attack(true);
 			}
+			// Play sound effect if ANY of the weapons fired successfully
+			if (success)
+				SoundEffectsHelper.PlayEnemyShotSound();
 
 			// Outside camera bounds? Destroy the game object
 			if (ren.IsVisableFrom(Camera.main) == false) {

@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour {
     public Vector2 speed = Vector2.one * 50f;
 	public float scrollingSpeed = 1f;
 
+	private bool dead = false;
+
     void Update() {
         // Movement
 		Vector2 axis = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
@@ -23,7 +25,8 @@ public class PlayerScript : MonoBehaviour {
         shoot |= Input.GetButtonDown("Fire2");
 
         if (shoot) {
-            weapon.Attack(false);
+            if (weapon.Attack(false))
+				SoundEffectsHelper.PlayPlayerShotSound();
         }
 
 		// Scrolling
@@ -31,5 +34,16 @@ public class PlayerScript : MonoBehaviour {
 		//Camera.main.transform.Translate (Vector3.right * scrollingSpeed * Time.deltaTime);
 		cam.rbody.velocity = Vector2.right * scrollingSpeed;
     }
+
+	void OnApplicationQuit() {
+		dead = true;
+	}
+
+	// Gets destroyed by the HealthScript, so basically this = OnDeath
+	void OnDestroy() {
+		if (!dead) {
+			GameOverScript.GameOver ();
+		}
+	}
 
 }

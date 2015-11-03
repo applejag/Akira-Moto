@@ -15,6 +15,7 @@ public class HealthScript : MonoBehaviour {
 
 			// MIACHEKL BEJ
 			SpecialEffectsHelper.Explosion(transform.position);
+			SoundEffectsHelper.PlayExplosionSound();
 		}
 	}
 	
