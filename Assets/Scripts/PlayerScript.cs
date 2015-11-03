@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ExtensionMethods;
 
 public class PlayerScript : MonoBehaviour {
 
     public Rigidbody2D rbody;
     public WeaponScript weapon;
-
-    [Space]
-
+	public CameraScript cam;
+    [Header("Settings")]
     public Vector2 speed = Vector2.one * 50f;
+	public float scrollingSpeed = 1f;
 
     void Update() {
         // Movement
-        float xAxis = Input.GetAxis("Horizontal");
-        float yAxis = Input.GetAxis("Vertical");
+		Vector2 axis = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
 
-        Vector2 movement = new Vector2(xAxis * speed.x, yAxis * speed.y);
+		Vector2 movement = Vector2.Scale (axis, speed);
         rbody.velocity = movement;
 
         // Shotting
@@ -25,6 +25,11 @@ public class PlayerScript : MonoBehaviour {
         if (shoot) {
             weapon.Attack(false);
         }
+
+		// Scrolling
+		rbody.velocity += Vector2.right * scrollingSpeed;
+		//Camera.main.transform.Translate (Vector3.right * scrollingSpeed * Time.deltaTime);
+		cam.rbody.velocity = Vector2.right * scrollingSpeed;
     }
 
 }

@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ExtensionMethods;
 
 public class MoverScript : MonoBehaviour {
 
     public Rigidbody2D rbody;
 
-    [Space]
+    [Header("Settings")]
 
     public float speed = 10f;
     public float angle = 0f;
@@ -13,8 +14,7 @@ public class MoverScript : MonoBehaviour {
 #if UNITY_EDITOR
 
     void OnDrawGizmosSelected() {
-        float a = angle * Mathf.Deg2Rad;
-        Vector3 point = transform.position + new Vector3(Mathf.Cos(a), Mathf.Sin(a));
+		Vector3 point = transform.position + VectorHelper.FromDegrees (angle).ToVector3 ();
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, point);
@@ -25,8 +25,7 @@ public class MoverScript : MonoBehaviour {
 
     void Update() {
 
-        float a = angle * Mathf.Deg2Rad;
-        Vector2 vec = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
+		Vector2 vec = VectorHelper.FromDegrees (angle);
 
         rbody.velocity = vec * speed;
 

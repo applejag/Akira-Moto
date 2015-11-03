@@ -73,7 +73,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 5049036}
-  speed: {x: 15, y: -0}
+  speed: 30
+  angle: 0
 --- !u!114 &11499206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,7 +120,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 115384}

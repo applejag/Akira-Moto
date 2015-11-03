@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using ExtensionMethods;
 
 public class WeaponScript : MonoBehaviour {
 
@@ -23,8 +23,7 @@ public class WeaponScript : MonoBehaviour {
 #if UNITY_EDITOR
 
     void OnDrawGizmosSelected() {
-        float a = angleOverride * Mathf.Deg2Rad;
-        Vector3 point = transform.position + new Vector3(Mathf.Cos(a), Mathf.Sin(a));
+		Vector3 point = transform.position + VectorHelper.FromDegrees (angleOverride).ToVector3 ();
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, point);
