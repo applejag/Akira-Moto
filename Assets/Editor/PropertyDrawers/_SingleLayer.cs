@@ -9,6 +9,7 @@ public class _SingleLayer : PropertyDrawer {
 
 	// Draw the int as a list popup
 	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+		EditorGUI.BeginProperty (position, label, property);
 
 		if (property.propertyType == SerializedPropertyType.Integer) {
 			property.intValue = DrawLayerPopup(position,label,property.intValue);
@@ -16,6 +17,7 @@ public class _SingleLayer : PropertyDrawer {
 			EditorGUI.LabelField(position,label.text, "Use SingleLayer with int.");
 		}
 
+		EditorGUI.EndProperty();
 	}
 
 	int DrawLayerPopup(Rect position, GUIContent label, int currentLayer) {

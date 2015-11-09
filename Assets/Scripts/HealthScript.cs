@@ -3,19 +3,26 @@ using System.Collections;
 
 public class HealthScript : MonoBehaviour {
 
-	public int hp = 1;
+	public int health = 1;
+	public int maxHealth = 1;
 	public bool isEnemy = true;
 
+	void OnValidate() {
+		health = Mathf.Max (health, 0);
+		maxHealth = Mathf.Max (health, maxHealth);
+	}
+
 	public void Damage(int damageCount)	{
-		hp -= damageCount;
-		
-		if (hp <= 0) {
+		health -= damageCount;
+		SendMessage ("OnHealthChange", SendMessageOptions.DontRequireReceiver);
+
+		if (health <= 0) {
 			// Dead!
-			Destroy(gameObject);
+			Destroy (gameObject);
 
 			// MIACHEKL BEJ
-			SpecialEffectsHelper.Explosion(transform.position);
-			SoundEffectsHelper.PlayExplosionSound();
+			SpecialEffectsHelper.Explosion (transform.position);
+			SoundEffectsHelper.PlayExplosionSound ();
 		}
 	}
 	
