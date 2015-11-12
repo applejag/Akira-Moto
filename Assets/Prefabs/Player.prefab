@@ -14,7 +14,6 @@ GameObject:
   - 60: {fileID: 6098148}
   - 114: {fileID: 11453932}
   - 114: {fileID: 11411088}
-  - 114: {fileID: 11457352}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -57,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.73000002, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 433284}
@@ -314,7 +313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   maxHealth: 3
-  isEnemy: 0
+  isPlayer: 1
+  rewardOnDeath: 0
 --- !u!114 &11453932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,21 +331,6 @@ MonoBehaviour:
   cam: {fileID: 0}
   speed: {x: 25, y: 15}
   scrollingSpeed: 1
---- !u!114 &11457352
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 134244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efb0511a37592bb488c311a85c33aa08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  script: {fileID: 11411088}
-  uiParent: {fileID: 0}
-  filledHeart: {fileID: 21300000, guid: 60ffd73bee30f2f4c88c7716e47b3cb8, type: 3}
-  emptyHeart: {fileID: 21300000, guid: 34bb87311c9d6d644b9ca43fc52e11d0, type: 3}
 --- !u!114 &11481068
 MonoBehaviour:
   m_ObjectHideFlags: 1

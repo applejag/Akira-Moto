@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 public class HealthGUIScript : MonoBehaviour {
 
-	public HealthScript script;
+	public static HealthGUIScript instance;
+	
 	public RectTransform uiParent;
 	[Space]
 	public Sprite filledHeart;
@@ -13,17 +14,15 @@ public class HealthGUIScript : MonoBehaviour {
 
 	private List<Image> elements = new List<Image>();
 
-	void Start() {
-		UpdateUIElements ();
-	}
+	void Awake() {
+		if (instance != null)
+			Debug.LogError("There can only be one instance! D:");
 
-	// Called from HealthScript
-	void OnHealthChange() {
-		UpdateUIElements ();
+		instance = this;
 	}
 
 	// Create UI elements from scratch
-	private void CreateUIElements() {
+	private void CreateUIElements(HealthScript script) {
 		// Remove any existing
 		foreach (var img in elements) {
 			Destroy(img.gameObject);
@@ -55,9 +54,9 @@ public class HealthGUIScript : MonoBehaviour {
 	}
 
 	// Update existing UI elements
-	private void UpdateUIElements() {
+	private void UpdateUIElements(HealthScript script) {
 		if (elements.Count != script.maxHealth) {
-			CreateUIElements();
+			CreateUIElements(script);
 		}
 
 		// Loop through each one
@@ -68,6 +67,10 @@ public class HealthGUIScript : MonoBehaviour {
 			// Update image
 			img.sprite = i < script.health ? filledHeart : emptyHeart;
 		}
+	}
+
+	public static void UpdateHearts(HealthScript source) {
+		instance.UpdateUIElements(source);
 	}
 
 }

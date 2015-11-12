@@ -9,13 +9,13 @@ public class CameraScript : MonoBehaviour {
 	[SingleLayer]
 	public int collidersLayer;
 
-	void Start() {
+	void Awake() {
 		SetupAllColliders ();
 	}
 
 	private void SetupAllColliders() {
 		Bounds bounds = Camera.main.OrthographicBounds ();
-		bounds.center = Vector3.zero;
+        bounds.center = Vector3.zero;
 
 		// Calculate bounds
 		Bounds top = new Bounds ();
