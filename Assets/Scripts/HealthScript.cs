@@ -1,74 +1,37 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class HealthScript : MonoBehaviour {
 
 	public int health = 1;
 	public int maxHealth = 1;
-	public bool isPlayer = false;
-	public bool rewardOnDeath = false;
-
-	public static HealthScript player;
-
-	void Awake() {
-		if (isPlayer) {
-			if (player != null)
-				Debug.LogError("There can only be one player!");
-
-			player = this;
-			HealthGUIScript.UpdateHearts(source: this);
-		}
-	}
-
-	void Start() {
-		if (isPlayer) {
-			HealthGUIScript.UpdateHearts(source: player);
-		}
-	}
+	public bool isEnemy = false;
 
 #if UNITY_EDITOR
 	void OnValidate() {
-		health = Mathf.Max (health, 0);
-		maxHealth = Mathf.Max (health, maxHealth);
+		maxHealth = Mathf.Max(health, maxHealth);
+		health = Mathf.Clamp(health, 0, maxHealth);
 	}
 #endif
 
-	public void Damage(int damageCount)	{
-		health = Mathf.Clamp(health - damageCount, 0, maxHealth);
-		if (isPlayer)
-			HealthGUIScript.UpdateHearts(source:this);
+	public void ModifyHealth(int delta) {
+		// Limit it; because health can't go below 0 and above /maxHealth/
+		delta = Mathf.Clamp(delta, -health, maxHealth - health);
 
-		if (health <= 0) {
-			// Dead!
-			Destroy (gameObject);
+		// Change the health
+		health += delta;
 
-			// MIACHEKL BEJ
-			SpecialEffectsHelper.Explosion (transform.position);
-			SoundEffectsHelper.PlayExplosionSound ();
-		}
+		// Send the event
+		if (delta < 0)
+			SendMessage("OnDamaged", delta, SendMessageOptions.DontRequireReceiver);
+		else if (delta > 0)
+			SendMessage("OnHealed", delta, SendMessageOptions.DontRequireReceiver);
+
 	}
-	
-	void OnTriggerEnter2D(Collider2D otherCollider)	{
-		// Is this a shot?
-		ShotScript shot = otherCollider.gameObject.GetComponent<ShotScript>();
-		if (shot != null) {
-			// Avoid friendly fire
-			if (shot.isEnemyShot == isPlayer) {
-				// Take damage
-				Damage(shot.damage);
-				
-				// Destroy the shot
-				Destroy(shot.gameObject);
 
-				// Health rewards
-				if (rewardOnDeath) {
-					Destroy(gameObject);
-					SoundEffectsHelper.PlayLifeSound();
-
-					// Heal the player
-					player.Damage(-1);
-				}
-			}
+	void OnDamaged(int delta) {
+		if (health <= 0) {
+			Destroy(gameObject);
 		}
 	}
 }

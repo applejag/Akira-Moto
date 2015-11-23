@@ -54,7 +54,7 @@ public class HealthGUIScript : MonoBehaviour {
 	}
 
 	// Update existing UI elements
-	private void UpdateUIElements(HealthScript script) {
+	public void UpdateUIElements(HealthScript script) {
 		if (elements.Count != script.maxHealth) {
 			CreateUIElements(script);
 		}
@@ -67,10 +67,6 @@ public class HealthGUIScript : MonoBehaviour {
 			// Update image
 			img.sprite = i < script.health ? filledHeart : emptyHeart;
 		}
-	}
-
-	public static void UpdateHearts(HealthScript source) {
-		instance.UpdateUIElements(source);
 	}
 
 }

@@ -1,49 +1,88 @@
 ﻿using UnityEngine;
 using System.Collections;
-using ExtensionMethods;
 
 public class PlayerScript : MonoBehaviour {
 
-    public Rigidbody2D rbody;
-    public WeaponScript weapon;
-	public CameraScript cam;
-    [Header("Settings")]
-    public Vector2 speed = Vector2.one * 50f;
-	public float scrollingSpeed = 1f;
+	[Header("Object references")]
 
-	private bool dead = false;
+	public HealthScript health;
+	public Animator anim;
+	public Rigidbody2D rbody;
+	public Transform damagePoint;
 
-    void Update() {
-        // Movement
-		Vector2 axis = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));
+	[Header("Settings")]
 
-		Vector2 movement = Vector2.Scale (axis, speed);
-        rbody.velocity = movement;
+	public float topSpeed = 1;
+	public float acceleration = 1;
 
-        // Shotting
-        bool shoot = Input.GetButtonDown("Fire1");
-        shoot |= Input.GetButtonDown("Fire2");
+	private AnimState state = AnimState.idle;
 
-        if (shoot) {
-            if (weapon.Attack(false))
-				SoundEffectsHelper.PlayPlayerShotSound();
-        }
-
-		// Scrolling
-		rbody.velocity += Vector2.right * scrollingSpeed;
-		//Camera.main.transform.Translate (Vector3.right * scrollingSpeed * Time.deltaTime);
-		cam.rbody.velocity = Vector2.right * scrollingSpeed;
-    }
-
-	void OnApplicationQuit() {
-		dead = true;
+	void Start() {
+		HealthGUIScript.instance.UpdateUIElements(health);
 	}
 
-	// Gets destroyed by the HealthScript, so basically this = OnDeath
-	void OnDestroy() {
-		if (!dead) {
-			GameOverScript.GameOver ();
+	void Update() {
+		Movement();
+		Attack();
+    }
+
+	void Movement() {
+		if (state == AnimState.attack)
+			return;
+
+		// Motion vector
+		Vector2 motion = rbody.velocity;
+
+		// Move with the input
+		float input = Input.GetAxis("Horizontal");
+		motion.x = Mathf.MoveTowards(motion.x, topSpeed * input, acceleration * Time.deltaTime);
+
+		// Apply the movement
+		rbody.velocity = motion;
+
+		// Turn around
+		if (input != 0) {
+			Turn(input > 0);
+			state = AnimState.moving;
+		} else {
+			state = AnimState.idle;
 		}
+	}
+
+	void Attack() {
+		if (state == AnimState.attack)
+			return;
+
+		// Check for input
+		bool attack = Input.GetButtonDown("Attack");
+
+		// Tell the animation controller
+		if (attack) {
+			anim.SetTrigger("Attack");
+			state = AnimState.attack;
+		}
+	}
+
+	void Turn(bool right) {
+		int sign = right ? 1 : -1;
+
+		Vector3 scale = transform.localScale;
+		scale.x = Mathf.Abs(scale.x) * sign;
+		transform.localScale = scale;
+	}
+
+	public void DealDamage() {
+		// Spawn a damage object
+		DamageScript.SpawnDamage(damagePoint.position, radius:1f, damage:1, isEnemy:false);
+	}
+
+	// Called by animations when they are done
+	public void SetState(AnimState state) {
+		this.state = state;
+	}
+
+	public enum AnimState {
+		idle, moving, attack
 	}
 
 }
