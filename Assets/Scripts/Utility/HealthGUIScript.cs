@@ -7,6 +7,7 @@ public class HealthGUIScript : MonoBehaviour {
 
 	public static HealthGUIScript instance;
 	
+	// Where to spawn the health objects
 	public RectTransform uiParent;
 	[Space]
 	public Sprite filledHeart;
@@ -22,14 +23,14 @@ public class HealthGUIScript : MonoBehaviour {
 	}
 
 	// Create UI elements from scratch
-	private void CreateUIElements(HealthScript script) {
+	private void CreateUIElements(float maxHealth) {
 		// Remove any existing
 		foreach (var img in elements) {
 			Destroy(img.gameObject);
 		}
 
 		// Create new objects
-		for (int hp=1; hp<=script.maxHealth; hp++) {
+		for (int hp=1; hp<=maxHealth; hp++) {
 			// Create it
 			GameObject obj = new GameObject();
 			Image img = obj.AddComponent<Image>();
@@ -39,7 +40,7 @@ public class HealthGUIScript : MonoBehaviour {
 
 			// Calculate scale & position
 			float size = uiParent.rect.height; // 1:1 ratio
-			float x = size * (hp - .5f - script.maxHealth/2f);
+			float x = size * (hp - .5f - maxHealth/2f);
 
 			img.rectTransform.offsetMin = new Vector2(x - size/2f, 0);
 			img.rectTransform.offsetMax = new Vector2(x + size/2f, 0);
@@ -54,9 +55,10 @@ public class HealthGUIScript : MonoBehaviour {
 	}
 
 	// Update existing UI elements
-	public void UpdateUIElements(HealthScript script) {
-		if (elements.Count != script.maxHealth) {
-			CreateUIElements(script);
+	public void UpdateUIElements(float health, float maxHealth) {
+		// Maxhealth changed, so recreate the elements
+		if (elements.Count != maxHealth) {
+			CreateUIElements(maxHealth);
 		}
 
 		// Loop through each one
@@ -64,8 +66,8 @@ public class HealthGUIScript : MonoBehaviour {
 			// Get image referance
 			Image img = elements[i];
 
-			// Update image
-			img.sprite = i < script.health ? filledHeart : emptyHeart;
+			// Update image (TURNARY FTW)
+			img.sprite = i < health ? filledHeart : emptyHeart;
 		}
 	}
 

@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour {
 	private AnimState state = AnimState.idle;
 
 	void Start() {
-		HealthGUIScript.instance.UpdateUIElements(health);
+		HealthGUIScript.instance.UpdateUIElements(health.health, health.maxHealth);
 	}
 
 	void Update() {
