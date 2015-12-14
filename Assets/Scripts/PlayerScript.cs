@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour {
 	public Animator anim;
 	public Rigidbody2D rbody;
 	public Transform damagePoint;
+	public ParticleSystem mouthParticles;
 
 	[Header("Settings")]
 
@@ -27,8 +28,10 @@ public class PlayerScript : MonoBehaviour {
     }
 
 	void Movement() {
-		if (state == AnimState.attack)
+		if (state == AnimState.attack) {
+			rbody.velocity = new Vector2(Mathf.MoveTowards(rbody.velocity.x, 0, acceleration * Time.deltaTime), rbody.velocity.y);
 			return;
+		}
 
 		// Motion vector
 		Vector2 motion = rbody.velocity;
@@ -44,8 +47,11 @@ public class PlayerScript : MonoBehaviour {
 		if (input != 0) {
 			Turn(input > 0);
 			state = AnimState.moving;
+			// Tell the animator
+			anim.SetBool("Walking", true);
 		} else {
 			state = AnimState.idle;
+			anim.SetBool("Walking", false);
 		}
 	}
 
@@ -74,6 +80,11 @@ public class PlayerScript : MonoBehaviour {
 	public void DealDamage() {
 		// Spawn a damage object
 		DamageScript.SpawnDamage(damagePoint.position, radius:1f, damage:1, isEnemy:false);
+	}
+
+	// Called by animations
+	void MouthParticles() {
+		mouthParticles.Play();
 	}
 
 	// Called by animations when they are done
