@@ -16,57 +16,45 @@ public class PlayerScript : MonoBehaviour {
 	public float topSpeed = 1;
 	public float acceleration = 1;
 
-	private AnimState state = AnimState.idle;
+	public AnimState state = AnimState.idle;
+	private bool ethernal;
 
 	void Start() {
 		HealthGUIScript.instance.UpdateUIElements(health.health, health.maxHealth);
 	}
 
 	void Update() {
-		Movement();
-		Attack();
-    }
 
-	void Movement() {
-		if (state == AnimState.attack) {
-			rbody.velocity = new Vector2(Mathf.MoveTowards(rbody.velocity.x, 0, acceleration * Time.deltaTime), rbody.velocity.y);
-			return;
-		}
+		//-----------------------
+		// Reading input
+		//-----------------------
 
-		// Motion vector
-		Vector2 motion = rbody.velocity;
+		// Check for input
+		float movement = Input.GetAxis("Horizontal");
+		bool attack = Input.GetButtonDown("Attack");
+		bool ethernal = Input.GetButton("Ethernal");
 
+		// Tell the animator
+		if (attack && state != AnimState.ethernal) anim.SetTrigger("Attack");
+		anim.SetBool("Ethernal", ethernal);
+		anim.SetBool("Walking", movement != 0);
+		anim.SetFloat("Movement", Mathf.Abs(movement));
+
+		//-----------------------
+		// Movement
+		//-----------------------
+		
 		// Move with the input
-		float input = Input.GetAxis("Horizontal");
-		motion.x = Mathf.MoveTowards(motion.x, topSpeed * input, acceleration * Time.deltaTime);
+		Vector2 motion = rbody.velocity;
+		motion.x = Mathf.MoveTowards(motion.x, topSpeed * movement, acceleration * Time.deltaTime);
 
 		// Apply the movement
 		rbody.velocity = motion;
 
 		// Turn around
-		if (input != 0) {
-			Turn(input > 0);
-			state = AnimState.moving;
-			// Tell the animator
-			anim.SetBool("Walking", true);
-		} else {
-			state = AnimState.idle;
-			anim.SetBool("Walking", false);
-		}
-	}
+		if (movement != 0)
+			Turn(movement > 0);
 
-	void Attack() {
-		if (state == AnimState.attack)
-			return;
-
-		// Check for input
-		bool attack = Input.GetButtonDown("Attack");
-
-		// Tell the animation controller
-		if (attack) {
-			anim.SetTrigger("Attack");
-			state = AnimState.attack;
-		}
 	}
 
 	void Turn(bool right) {
@@ -82,18 +70,20 @@ public class PlayerScript : MonoBehaviour {
 		DamageScript.SpawnDamage(damagePoint.position, radius:1f, damage:1, isEnemy:false);
 	}
 
+	#region Animation events
 	// Called by animations
+
 	void MouthParticles() {
 		mouthParticles.Play();
 	}
-
-	// Called by animations when they are done
+	
 	public void SetState(AnimState state) {
 		this.state = state;
 	}
+	#endregion
 
 	public enum AnimState {
-		idle, moving, attack
+		idle, moving, attack, ethernal
 	}
 
 }
