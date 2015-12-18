@@ -11,18 +11,25 @@ public class PlayerScript : MonoBehaviour {
 	public Transform damagePoint;
 	public ParticleSystem mouthParticles;
 
-	[Header("Settings")]
+	[Header("Movement")]
 
 	public float topSpeed = 1;
 	public float acceleration = 1;
 
-	public AnimState state = AnimState.idle;
+	[Header("Ethernal state")]
+
+	[SingleLayer]
+	public int defaultLayer;
+	[SingleLayer]
+	public int ethernalLayer;
+
+	private AnimState state = AnimState.idle;
 	private bool ethernal;
 
 	void Start() {
 		HealthGUIScript.instance.UpdateUIElements(health.health, health.maxHealth);
 	}
-
+	
 	void Update() {
 
 		//-----------------------
@@ -70,6 +77,14 @@ public class PlayerScript : MonoBehaviour {
 		DamageScript.SpawnDamage(damagePoint.position, radius:1f, damage:1, isEnemy:false);
 	}
 
+	void EthernalEnter() {
+		gameObject.layer = ethernalLayer;
+	}
+
+	void EthernalExit() {
+		gameObject.layer = defaultLayer;
+	}
+
 	#region Animation events
 	// Called by animations
 
@@ -78,6 +93,11 @@ public class PlayerScript : MonoBehaviour {
 	}
 	
 	public void SetState(AnimState state) {
+		if (this.state != AnimState.ethernal && state == AnimState.ethernal)
+			EthernalEnter();
+		if (this.state == AnimState.ethernal && state != AnimState.ethernal)
+			EthernalExit();
+
 		this.state = state;
 	}
 	#endregion

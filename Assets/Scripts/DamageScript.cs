@@ -13,7 +13,7 @@ public class DamageScript : MonoBehaviour {
 		yield return new WaitForFixedUpdate();
 
 		// Will only live for one frame
-		//Destroy(gameObject);
+		Destroy(gameObject);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -27,6 +27,7 @@ public class DamageScript : MonoBehaviour {
 			health.ModifyHealth(-damage);
 		}
 	}
+
 
 	public static DamageScript SpawnDamage(Vector3 position, float radius, int damage, bool isEnemy) {
 		// Create the object
