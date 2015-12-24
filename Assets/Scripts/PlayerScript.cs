@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ExtensionMethods;
 
 public class PlayerScript : MonoBehaviour {
 
@@ -25,6 +26,9 @@ public class PlayerScript : MonoBehaviour {
 	public int defaultLayer;
 	[SingleLayer]
 	public int etherealLayer;
+	public Transform etherealExitPos;
+	public float etherealDistance = 3f;
+	public LayerMask rayLayerMask;
 
 	private AnimState state = AnimState.idle;
 	private bool ethernal;
@@ -52,6 +56,10 @@ public class PlayerScript : MonoBehaviour {
 		//-----------------------
 		// Movement
 		//-----------------------
+
+		// Can't move while attacking nor warping
+		if (state == AnimState.attack || state == AnimState.ethereal)
+			return;
 
 		// Move with the input
 		body.AddForce(new Vector2(movement * speed, 0f));
@@ -94,11 +102,21 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void EthernalEnter() {
+		// Calc distance
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(transform.localScale.x, 0f), etherealDistance, rayLayerMask);
+		if (hit.collider)
+			etherealExitPos.transform.position = new Vector3(hit.point.x, etherealExitPos.transform.position.y, etherealExitPos.transform.position.z);
+		else
+			etherealExitPos.transform.position = transform.position + new Vector3(transform.localScale.x * etherealDistance, 0f);
+		
 		gameObject.layer = etherealLayer;
 	}
 
 	void EthernalExit() {
 		gameObject.layer = defaultLayer;
+
+		// Move playah
+		transform.position = etherealExitPos.position;
 	}
 
 	void MouthParticles() {
