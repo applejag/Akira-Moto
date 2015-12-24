@@ -98,7 +98,7 @@ public class PlayerScript : MonoBehaviour {
 
 	public void DealDamage() {
 		// Spawn a damage object
-		DamageScript.SpawnDamage(damagePoint.position, damageRadius, damage:1, isEnemy:false);
+		DamageScript.SpawnDamage(damagePoint.position, damageRadius, damage:1, source:health);
 	}
 
 	void EthernalEnter() {

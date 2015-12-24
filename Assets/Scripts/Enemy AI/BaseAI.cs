@@ -5,6 +5,7 @@ public abstract class BaseAI : MonoBehaviour {
 
 	[Header("BaseAI")]
 	public Rigidbody2D body;
+	public HealthScript health;
 	public float speed = 1f; // units per second
 	public float attackRange = 1f;
 	public float attackCooldown = 1f; // delay in seconds

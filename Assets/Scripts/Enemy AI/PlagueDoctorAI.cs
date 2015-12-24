@@ -48,6 +48,8 @@ public class PlagueDoctorAI : BaseAI {
 		var clone = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation) as GameObject;
 		clone.transform.parent = transform.parent;
 		clone.transform.localScale = transform.localScale;
+		var damage = clone.GetComponent<DamageScript>();
+		damage.source = health;
 	}
 
 	#endregion

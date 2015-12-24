@@ -3,14 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class DamageScript : MonoBehaviour {
-
-	public bool isEnemy = false;
+	
 	public int damage = 1;
 	public bool dieOnStart = true;
+	public HealthScript source;
+	public bool isEnemy { get { return source.isEnemy; } }
 
 	private List<HealthScript> damaged = new List<HealthScript>();
 
 	public IEnumerator Start() {
+		if (source == null)
+			DestroyImmediate(gameObject);
+
 		yield return new WaitForFixedUpdate();
 
 		// Will only live for one frame
@@ -42,7 +46,7 @@ public class DamageScript : MonoBehaviour {
 		}
 	}
 
-	public static DamageScript SpawnDamage(Vector3 position, float radius, int damage, bool isEnemy) {
+	public static DamageScript SpawnDamage(Vector3 position, float radius, int damage, HealthScript source) {
 		// Create the object
 		var damageObject = new GameObject("Damage");
 		damageObject.transform.position = position;
@@ -50,14 +54,14 @@ public class DamageScript : MonoBehaviour {
 		// Add components
 		var circleCollider = damageObject.AddComponent<CircleCollider2D>();
 		var damageScript = damageObject.AddComponent<DamageScript>();
-		var rbody = damageObject.AddComponent<Rigidbody2D>();
+		var body = damageObject.AddComponent<Rigidbody2D>();
 
 		// Init components
 		circleCollider.radius = radius;
 		circleCollider.isTrigger = true;
-		damageScript.isEnemy = isEnemy;
+		damageScript.source = source;
 		damageScript.damage = damage;
-		rbody.gravityScale = 0;
+		body.gravityScale = 0;
 
 		// Return referance
 		return damageScript;
