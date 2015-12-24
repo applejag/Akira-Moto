@@ -29,7 +29,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -38,7 +38,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -54,7 +54,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
@@ -70,8 +70,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 48}
+        - {x: -15, y: 0}
+        - {x: 28, y: 0}
+        - {x: 30, y: 2}
+        - {x: 30, y: 48}
     - name: idle_1
       rect:
         serializedVersion: 2
@@ -80,8 +86,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 48}
+        - {x: -15, y: 0}
+        - {x: 28, y: 0}
+        - {x: 30, y: 2}
+        - {x: 30, y: 48}
     - name: idle_2
       rect:
         serializedVersion: 2
@@ -90,8 +102,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 48}
+        - {x: -15, y: 0}
+        - {x: 28, y: 0}
+        - {x: 30, y: 2}
+        - {x: 30, y: 48}
     - name: idle_3
       rect:
         serializedVersion: 2
@@ -100,8 +118,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 48}
+        - {x: -15, y: 0}
+        - {x: 28, y: 0}
+        - {x: 30, y: 2}
+        - {x: 30, y: 48}
     - name: idle_4
       rect:
         serializedVersion: 2
@@ -110,8 +134,17 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 0}
+        - {x: 24, y: 0}
+        - {x: 30, y: 5}
+        - {x: 30, y: 45}
+        - {x: 27, y: 46}
+        - {x: 17, y: 48}
+        - {x: -7, y: 48}
+        - {x: -15, y: 32}
     - name: idle_5
       rect:
         serializedVersion: 2
@@ -120,8 +153,17 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 47}
+        - {x: -5, y: 47}
+        - {x: -9, y: 41}
+        - {x: -15, y: 28}
+        - {x: -15, y: 0}
+        - {x: 20, y: 0}
+        - {x: 30, y: 35}
+        - {x: 30, y: 40}
     - name: idle_6
       rect:
         serializedVersion: 2
@@ -130,8 +172,17 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 47}
+        - {x: -5, y: 47}
+        - {x: -9, y: 41}
+        - {x: -15, y: 28}
+        - {x: -15, y: 0}
+        - {x: 20, y: 0}
+        - {x: 30, y: 35}
+        - {x: 30, y: 40}
     - name: idle_7
       rect:
         serializedVersion: 2
@@ -140,8 +191,17 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 47}
+        - {x: -5, y: 47}
+        - {x: -9, y: 41}
+        - {x: -15, y: 28}
+        - {x: -15, y: 0}
+        - {x: 20, y: 0}
+        - {x: 30, y: 35}
+        - {x: 30, y: 40}
     - name: idle_8
       rect:
         serializedVersion: 2
@@ -150,8 +210,17 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 47}
+        - {x: -5, y: 47}
+        - {x: -9, y: 41}
+        - {x: -15, y: 28}
+        - {x: -15, y: 0}
+        - {x: 20, y: 0}
+        - {x: 30, y: 35}
+        - {x: 30, y: 40}
     - name: idle_9
       rect:
         serializedVersion: 2
@@ -160,8 +229,16 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 47}
+        - {x: -15, y: 39}
+        - {x: -15, y: 0}
+        - {x: 20, y: 0}
+        - {x: 30, y: 20}
+        - {x: 30, y: 46}
+        - {x: 23, y: 47}
     - name: idle_10
       rect:
         serializedVersion: 2
@@ -170,8 +247,16 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 47}
+        - {x: -15, y: 39}
+        - {x: -15, y: 0}
+        - {x: 20, y: 0}
+        - {x: 30, y: 20}
+        - {x: 30, y: 46}
+        - {x: 23, y: 47}
     - name: idle_11
       rect:
         serializedVersion: 2
@@ -180,8 +265,17 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 7
-      pivot: {x: .5, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 47}
+        - {x: -15, y: 39}
+        - {x: -15, y: 0}
+        - {x: 20, y: 0}
+        - {x: 30, y: 20}
+        - {x: 30, y: 46}
+        - {x: 23, y: 47}
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -26,7 +26,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -35,7 +35,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -51,7 +51,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
@@ -67,8 +67,19 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 66.399994}
+        - {x: -25, y: 61.399994}
+        - {x: -35, y: 17.399994}
+        - {x: -35, y: -3.600006}
+        - {x: -33, y: -4.600006}
+        - {x: 17, y: -4.600006}
+        - {x: 26, y: -2.600006}
+        - {x: 39, y: 42.399994}
+        - {x: 39, y: 60.399994}
+        - {x: 31, y: 66.399994}
     - name: player_idle_1
       rect:
         serializedVersion: 2
@@ -77,8 +88,19 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 66.399994}
+        - {x: -25, y: 61.399994}
+        - {x: -35, y: 17.399994}
+        - {x: -35, y: -3.600006}
+        - {x: -33, y: -4.600006}
+        - {x: 17, y: -4.600006}
+        - {x: 26, y: -2.600006}
+        - {x: 39, y: 42.399994}
+        - {x: 39, y: 60.399994}
+        - {x: 31, y: 66.399994}
     - name: player_idle_2
       rect:
         serializedVersion: 2
@@ -87,8 +109,17 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 66.399994}
+        - {x: -35, y: 12.399994}
+        - {x: -35, y: -3.600006}
+        - {x: -33, y: -4.600006}
+        - {x: 23, y: -4.600006}
+        - {x: 38, y: 17.399994}
+        - {x: 38, y: 64.399994}
+        - {x: 35, y: 66.399994}
     - name: player_idle_3
       rect:
         serializedVersion: 2
@@ -97,8 +128,25 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 65.399994}
+        - {x: 3, y: 61.399994}
+        - {x: 3, y: 59.399994}
+        - {x: 8, y: 54.399994}
+        - {x: 10, y: 54.399994}
+        - {x: 10, y: 53.399994}
+        - {x: 4, y: 55.399994}
+        - {x: 2, y: 58.399994}
+        - {x: -8, y: 65.399994}
+        - {x: -16, y: 65.399994}
+        - {x: -35, y: 6.399994}
+        - {x: -35, y: -3.600006}
+        - {x: -34, y: -4.600006}
+        - {x: 24, y: -4.600006}
+        - {x: 36, y: 24.399994}
+        - {x: 36, y: 65.399994}
     - name: player_idle_4
       rect:
         serializedVersion: 2
@@ -107,8 +155,25 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 65.399994}
+        - {x: 3, y: 61.399994}
+        - {x: 3, y: 59.399994}
+        - {x: 8, y: 54.399994}
+        - {x: 10, y: 54.399994}
+        - {x: 10, y: 53.399994}
+        - {x: 4, y: 55.399994}
+        - {x: 2, y: 58.399994}
+        - {x: -12, y: 60.399994}
+        - {x: -17, y: 54.399994}
+        - {x: -35, y: 0.3999939}
+        - {x: -35, y: -0.6000061}
+        - {x: -34, y: -4.600006}
+        - {x: 24, y: -4.600006}
+        - {x: 36, y: 24.399994}
+        - {x: 36, y: 65.399994}
     - name: player_idle_5
       rect:
         serializedVersion: 2
@@ -117,8 +182,25 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 65.399994}
+        - {x: 3, y: 61.399994}
+        - {x: 3, y: 59.399994}
+        - {x: 8, y: 54.399994}
+        - {x: 10, y: 54.399994}
+        - {x: 10, y: 53.399994}
+        - {x: 4, y: 55.399994}
+        - {x: 2, y: 58.399994}
+        - {x: -12, y: 60.399994}
+        - {x: -17, y: 54.399994}
+        - {x: -35, y: 0.3999939}
+        - {x: -35, y: -0.6000061}
+        - {x: -34, y: -4.600006}
+        - {x: 24, y: -4.600006}
+        - {x: 36, y: 24.399994}
+        - {x: 36, y: 65.399994}
     - name: player_idle_6
       rect:
         serializedVersion: 2
@@ -127,8 +209,16 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 66.399994}
+        - {x: -35, y: 6.399994}
+        - {x: -35, y: -4.600006}
+        - {x: 30, y: -4.600006}
+        - {x: 38, y: 32.399994}
+        - {x: 38, y: 60.399994}
+        - {x: 29, y: 66.399994}
     - name: player_idle_7
       rect:
         serializedVersion: 2
@@ -137,8 +227,19 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 66.399994}
+        - {x: -25, y: 61.399994}
+        - {x: -35, y: 17.399994}
+        - {x: -35, y: -3.600006}
+        - {x: -33, y: -4.600006}
+        - {x: 17, y: -4.600006}
+        - {x: 26, y: -2.600006}
+        - {x: 39, y: 42.399994}
+        - {x: 39, y: 60.399994}
+        - {x: 31, y: 66.399994}
     - name: player_idle_8
       rect:
         serializedVersion: 2
@@ -147,8 +248,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 66.399994}
+        - {x: -25, y: 61.399994}
+        - {x: -35, y: 17.399994}
+        - {x: -35, y: -3.600006}
+        - {x: -33, y: -4.600006}
+        - {x: 17, y: -4.600006}
+        - {x: 26, y: -2.600006}
+        - {x: 39, y: 42.399994}
+        - {x: 39, y: 60.399994}
+        - {x: 31, y: 66.399994}
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

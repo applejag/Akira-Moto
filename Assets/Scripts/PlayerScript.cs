@@ -7,60 +7,73 @@ public class PlayerScript : MonoBehaviour {
 
 	public HealthScript health;
 	public Animator anim;
-	public Rigidbody2D rbody;
+	public Rigidbody2D body;
 	public Transform damagePoint;
 	public ParticleSystem mouthParticles;
 
+	[Header("Attacking")]
+
+	public float damageRadius = 1f;
+
 	[Header("Movement")]
 
-	public float topSpeed = 1;
-	public float acceleration = 1;
+	public float speed = 1;
 
 	[Header("Ethernal state")]
 
 	[SingleLayer]
 	public int defaultLayer;
 	[SingleLayer]
-	public int ethernalLayer;
+	public int etherealLayer;
 
 	private AnimState state = AnimState.idle;
 	private bool ethernal;
 
-	void Start() {
-		HealthGUIScript.instance.UpdateUIElements(health.health, health.maxHealth);
+	public bool isEthereal { get { return state == AnimState.ethereal; } }
+
+#if UNITY_EDITOR
+	void OnDrawGizmos() {
+		Transform selected = UnityEditor.Selection.activeTransform;
+		if (selected == transform || (selected == damagePoint && damagePoint != null)) {
+			UnityEditor.Handles.color = Color.red;
+			UnityEditor.Handles.CircleCap(0, damagePoint.position, Quaternion.identity, damageRadius);
+		}
 	}
-	
-	void Update() {
+#endif
 
-		//-----------------------
-		// Reading input
-		//-----------------------
-
+	void FixedUpdate() {
 		// Check for input
 		float movement = Input.GetAxis("Horizontal");
-		bool attack = Input.GetButtonDown("Attack");
-		bool ethernal = Input.GetButton("Ethernal");
 
 		// Tell the animator
-		if (attack && state != AnimState.ethernal) anim.SetTrigger("Attack");
-		anim.SetBool("Ethernal", ethernal);
 		anim.SetBool("Walking", movement != 0);
 		anim.SetFloat("Movement", Mathf.Abs(movement));
 
 		//-----------------------
 		// Movement
 		//-----------------------
-		
-		// Move with the input
-		Vector2 motion = rbody.velocity;
-		motion.x = Mathf.MoveTowards(motion.x, topSpeed * movement, acceleration * Time.deltaTime);
 
-		// Apply the movement
-		rbody.velocity = motion;
+		// Move with the input
+		body.AddForce(new Vector2(movement * speed, 0f));
 
 		// Turn around
 		if (movement != 0)
 			Turn(movement > 0);
+	}
+
+	void Update() { 
+
+		//-----------------------
+		// Reading input
+		//-----------------------
+
+		// Check for input
+		bool attack = Input.GetButtonDown("Attack");
+		bool ethereal = Input.GetButton("Ethereal");
+
+		// Tell the animator
+		if (attack && state != AnimState.ethereal) anim.SetTrigger("Attack");
+		anim.SetBool("Ethereal", ethereal);
 
 	}
 
@@ -72,30 +85,30 @@ public class PlayerScript : MonoBehaviour {
 		transform.localScale = scale;
 	}
 
+	#region Animation events
+	// Called by animations
+
 	public void DealDamage() {
 		// Spawn a damage object
-		DamageScript.SpawnDamage(damagePoint.position, radius:1f, damage:1, isEnemy:false);
+		DamageScript.SpawnDamage(damagePoint.position, damageRadius, damage:1, isEnemy:false);
 	}
 
 	void EthernalEnter() {
-		gameObject.layer = ethernalLayer;
+		gameObject.layer = etherealLayer;
 	}
 
 	void EthernalExit() {
 		gameObject.layer = defaultLayer;
 	}
 
-	#region Animation events
-	// Called by animations
-
 	void MouthParticles() {
 		mouthParticles.Play();
 	}
 	
 	public void SetState(AnimState state) {
-		if (this.state != AnimState.ethernal && state == AnimState.ethernal)
+		if (this.state != AnimState.ethereal && state == AnimState.ethereal)
 			EthernalEnter();
-		if (this.state == AnimState.ethernal && state != AnimState.ethernal)
+		if (this.state == AnimState.ethereal && state != AnimState.ethereal)
 			EthernalExit();
 
 		this.state = state;
@@ -103,7 +116,7 @@ public class PlayerScript : MonoBehaviour {
 	#endregion
 
 	public enum AnimState {
-		idle, moving, attack, ethernal
+		idle, moving, attack, ethereal
 	}
 
 }

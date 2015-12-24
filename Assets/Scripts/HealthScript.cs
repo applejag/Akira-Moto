@@ -5,7 +5,10 @@ public class HealthScript : MonoBehaviour {
 
 	public int health = 1;
 	public int maxHealth = 1;
-	public bool isEnemy = false;
+	public bool isEnemy = true;
+	public bool updatesUI = false;
+
+	private static bool ui;
 
 #if UNITY_EDITOR
 	void OnValidate() {
@@ -14,6 +17,17 @@ public class HealthScript : MonoBehaviour {
 	}
 #endif
 
+	void Start() {
+		if (updatesUI) {
+			// see if theres multiple ui updators'
+			if (ui)
+				Debug.LogError("There should only be one that updates the ui!!");
+			ui = true;
+
+			HealthGUIScript.instance.UpdateUIElements(health, maxHealth);
+		}
+	}
+
 	public void ModifyHealth(int delta) {
 		// Limit it; because health can't go below 0 and above /maxHealth/
 		delta = Mathf.Clamp(delta, -health, maxHealth - health);
@@ -21,17 +35,13 @@ public class HealthScript : MonoBehaviour {
 		// Change the health
 		health += delta;
 
-		// Send the event
-		if (delta < 0)
-			SendMessage("OnDamaged", delta, SendMessageOptions.DontRequireReceiver);
-		else if (delta > 0)
-			SendMessage("OnHealed", delta, SendMessageOptions.DontRequireReceiver);
-
-	}
-
-	void OnDamaged(int delta) {
-		if (health <= 0) {
+		// Check if dead
+		if (health == 0) {
 			Destroy(gameObject);
 		}
+
+		if (updatesUI)
+			HealthGUIScript.instance.UpdateUIElements(health, maxHealth);
 	}
+	
 }

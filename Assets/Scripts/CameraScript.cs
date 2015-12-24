@@ -25,7 +25,7 @@ public class CameraScript : MonoBehaviour {
 		
 		Vector3 to = target.transform.position;
 		if (includeOffset) to += offset;
-		to += target.rbody.velocity.ToVector3() * velocityScale;
+		to += target.body.velocity.ToVector3() * velocityScale;
 
 		if (ignoreX) to.x = transform.position.x;
 		if (ignoreY) to.y = transform.position.y;

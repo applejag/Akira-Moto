@@ -22,7 +22,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -31,7 +31,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -47,7 +47,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
@@ -63,8 +63,19 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 66.399994}
+        - {x: -25, y: 61.399994}
+        - {x: -35, y: 17.399994}
+        - {x: -35, y: -3.600006}
+        - {x: -33, y: -4.600006}
+        - {x: 17, y: -4.600006}
+        - {x: 26, y: -2.600006}
+        - {x: 39, y: 42.399994}
+        - {x: 39, y: 60.399994}
+        - {x: 31, y: 66.399994}
     - name: player_enter_etheral_1
       rect:
         serializedVersion: 2
@@ -73,8 +84,32 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27, y: 19.399994}
+        - {x: 17, y: 19.399994}
+        - {x: 17, y: -7.600006}
+        - {x: 24, y: -7.600006}
+        - {x: 30, y: 6.399994}
+        - {x: 30, y: 16.399994}
+        - {x: 29, y: 18.399994}
+      - - {x: -6, y: 9.399994}
+        - {x: 18, y: 19.399994}
+        - {x: 19, y: 23.399994}
+        - {x: 19, y: 45.399994}
+        - {x: 18, y: 48.399994}
+        - {x: 7, y: 52.399994}
+        - {x: -13, y: 52.399994}
+        - {x: -19, y: 51.399994}
+        - {x: -39, y: 24.399994}
+        - {x: -39, y: 15.399994}
+        - {x: -38, y: 10.399994}
+        - {x: -23, y: 0.3999939}
+        - {x: 11, y: 0.3999939}
+        - {x: 19, y: 3.399994}
+        - {x: 19, y: 5.399994}
+        - {x: 15, y: 9.399994}
     - name: player_enter_etheral_2
       rect:
         serializedVersion: 2
@@ -83,8 +118,43 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 62.399994}
+        - {x: 14, y: 3.399994}
+        - {x: 36, y: 3.399994}
+        - {x: 36, y: 59.399994}
+        - {x: 26, y: 62.399994}
+      - - {x: 13, y: 56.399994}
+        - {x: 2, y: 58.399994}
+        - {x: -17, y: 58.399994}
+        - {x: -35, y: 47.399994}
+        - {x: -36, y: 43.399994}
+        - {x: -36, y: 10.399994}
+        - {x: -29, y: 6.399994}
+        - {x: -25, y: 7.399994}
+        - {x: -2, y: 8.399994}
+        - {x: 16, y: 28.399994}
+        - {x: 16, y: 47.399994}
+      - - {x: 37, y: 18.399994}
+        - {x: 40, y: 19.399994}
+        - {x: 40, y: 22.399994}
+        - {x: 37, y: 23.399994}
+        - {x: 35, y: 21.399994}
+      - - {x: 18, y: 60.399994}
+        - {x: 21, y: 62.399994}
+        - {x: 19, y: 67.399994}
+        - {x: 16, y: 67.399994}
+        - {x: 15, y: 64.399994}
+      - - {x: -2, y: 72.399994}
+        - {x: -3, y: 70.399994}
+        - {x: -2, y: 66.399994}
+        - {x: 2, y: 65.399994}
+        - {x: 10, y: 65.399994}
+        - {x: 12, y: 66.399994}
+        - {x: 12, y: 69.399994}
+        - {x: 11, y: 72.399994}
     - name: player_enter_etheral_3
       rect:
         serializedVersion: 2
@@ -93,8 +163,36 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 24.399994}
+        - {x: -19, y: 24.399994}
+        - {x: -20, y: 23.399994}
+        - {x: -20, y: 19.399994}
+        - {x: -12, y: 11.399994}
+        - {x: 4, y: 11.399994}
+        - {x: 6, y: 12.399994}
+        - {x: 13, y: 17.399994}
+        - {x: 13, y: 18.399994}
+        - {x: 10, y: 23.399994}
+      - - {x: -4, y: 51.399994}
+        - {x: -14, y: 45.399994}
+        - {x: -14, y: 29.399994}
+        - {x: -12, y: 21.399994}
+        - {x: 14, y: 21.399994}
+        - {x: 20, y: 22.399994}
+        - {x: 20, y: 44.399994}
+        - {x: 18, y: 51.399994}
+      - - {x: -28, y: 27.399994}
+        - {x: -25, y: 24.399994}
+        - {x: -16, y: 24.399994}
+        - {x: -14, y: 27.399994}
+        - {x: -14, y: 39.399994}
+        - {x: -15, y: 39.399994}
+        - {x: -18, y: 40.399994}
+        - {x: -23, y: 40.399994}
+        - {x: -28, y: 36.399994}
     - name: player_enter_etheral_4
       rect:
         serializedVersion: 2
@@ -103,8 +201,23 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 9
-      pivot: {x: .5, y: .200000003}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 24.400002}
+        - {x: 8, y: 24.400002}
+        - {x: 13, y: 26.400002}
+        - {x: 13, y: 45.4}
+        - {x: -10, y: 45.4}
+        - {x: -10, y: 29.400002}
+      - - {x: -13, y: 47.4}
+        - {x: -13, y: 41.4}
+        - {x: 10, y: 41.4}
+        - {x: 11, y: 43.4}
+        - {x: 10, y: 48.4}
+        - {x: 5, y: 54.4}
+        - {x: -5, y: 54.4}
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
