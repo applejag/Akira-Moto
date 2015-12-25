@@ -337,7 +337,7 @@ MonoBehaviour:
   defaultLayer: 8
   warpLayer: 10
   warpExitPos: {fileID: 485790}
-  warpDistance: 3
+  warpDistance: 5
   rayLayerMask:
     serializedVersion: 2
     m_Bits: 0
