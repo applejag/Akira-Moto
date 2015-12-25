@@ -25,15 +25,15 @@ public class PlayerScript : MonoBehaviour {
 	[SingleLayer]
 	public int defaultLayer;
 	[SingleLayer]
-	public int etherealLayer;
-	public Transform etherealExitPos;
-	public float etherealDistance = 3f;
+	public int warpLayer;
+	public Transform warpExitPos;
+	public float warpDistance = 3f;
 	public LayerMask rayLayerMask;
 
 	private AnimState state = AnimState.idle;
-	private bool ethernal;
+	private bool warp;
 
-	public bool isEthereal { get { return state == AnimState.ethereal; } }
+	public bool isWarping { get { return state == AnimState.warping; } }
 
 #if UNITY_EDITOR
 	void OnDrawGizmos() {
@@ -58,7 +58,7 @@ public class PlayerScript : MonoBehaviour {
 		//-----------------------
 
 		// Can't move while attacking nor warping
-		if (state == AnimState.attack || state == AnimState.ethereal)
+		if (state == AnimState.attack || state == AnimState.warping)
 			return;
 
 		// Move with the input
@@ -77,11 +77,11 @@ public class PlayerScript : MonoBehaviour {
 
 		// Check for input
 		bool attack = Input.GetButtonDown("Attack");
-		bool ethereal = Input.GetButton("Ethereal");
+		bool warp = Input.GetButton("Warp");
 
 		// Tell the animator
-		if (attack && state != AnimState.ethereal) anim.SetTrigger("Attack");
-		anim.SetBool("Ethereal", ethereal);
+		if (attack && state != AnimState.warping) anim.SetTrigger("Attack");
+		anim.SetBool("Warp", warp);
 
 	}
 
@@ -103,20 +103,20 @@ public class PlayerScript : MonoBehaviour {
 
 	void EthernalEnter() {
 		// Calc distance
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(transform.localScale.x, 0f), etherealDistance, rayLayerMask);
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(transform.localScale.x, 0f), warpDistance, rayLayerMask);
 		if (hit.collider)
-			etherealExitPos.transform.position = new Vector3(hit.point.x, etherealExitPos.transform.position.y, etherealExitPos.transform.position.z);
+			warpExitPos.transform.position = new Vector3(hit.point.x, warpExitPos.transform.position.y, warpExitPos.transform.position.z);
 		else
-			etherealExitPos.transform.position = transform.position + new Vector3(transform.localScale.x * etherealDistance, 0f);
+			warpExitPos.transform.position = transform.position + new Vector3(transform.localScale.x * warpDistance, 0f);
 		
-		gameObject.layer = etherealLayer;
+		gameObject.layer = warpLayer;
 	}
 
 	void EthernalExit() {
 		gameObject.layer = defaultLayer;
 
 		// Move playah
-		transform.position = etherealExitPos.position;
+		transform.position = warpExitPos.position;
 	}
 
 	void MouthParticles() {
@@ -124,9 +124,9 @@ public class PlayerScript : MonoBehaviour {
 	}
 	
 	public void SetState(AnimState state) {
-		if (this.state != AnimState.ethereal && state == AnimState.ethereal)
+		if (this.state != AnimState.warping && state == AnimState.warping)
 			EthernalEnter();
-		if (this.state == AnimState.ethereal && state != AnimState.ethereal)
+		if (this.state == AnimState.warping && state != AnimState.warping)
 			EthernalExit();
 
 		this.state = state;
@@ -134,7 +134,7 @@ public class PlayerScript : MonoBehaviour {
 	#endregion
 
 	public enum AnimState {
-		idle, moving, attack, ethereal
+		idle, moving, attack, warping
 	}
 
 }

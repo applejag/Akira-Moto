@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Player
   - Enemy
-  - Ethereal
+  - Warping
   - Ground
   - EnemyProjectile
   - 
@@ -41,6 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Shadows
+    uniqueID: 882339455
+    locked: 0
+  - name: Entities
+    uniqueID: 362741259
+    locked: 0
   - name: Particles
     uniqueID: 2356550019
+    locked: 0
+  - name: HUD
+    uniqueID: 1329685607
     locked: 0

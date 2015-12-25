@@ -7,7 +7,8 @@ public class BottleProjectileScript : MonoBehaviour {
 	public float force = 1f;
 	public float angle;
 	public Rigidbody2D rbody;
-	public ParticleSystem[] saveOnDeath;
+	public Transform[] saveOnDeath;
+	[Space]
 	public ParticleSystem playerCollision;
 	public ParticleSystem groundCollision;
 
@@ -48,13 +49,16 @@ public class BottleProjectileScript : MonoBehaviour {
 		Destroy(gameObject, 10f);
 	}
 
-	void OnCollisionEnter2D(Collision2D col) {
-		if (col.collider.attachedRigidbody == null) {
-			// Ground
-			print("ground");
+	void OnTriggerEnter2D(Collider2D col) {
+		if (col.tag == "Ground") {
+			// Collided with ground
 			groundCollision.Play();
 			Die();
-		} else if (col.collider.attachedRigidbody.GetComponent<PlayerScript>() != null) {
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D other) {
+		if (other.rigidbody != null && other.rigidbody.GetComponent<PlayerScript>() != null) {
 			// Collided with player
 			print("player");
 			playerCollision.Play();
@@ -66,13 +70,21 @@ public class BottleProjectileScript : MonoBehaviour {
 	void Die() {
 
 		// Dont destroy the particle systems imidietly
-		foreach(var sys in saveOnDeath) {
-			sys.transform.parent = transform.parent;
-			var em = sys.emission;
-			em.enabled = false;
+		foreach(var obj in saveOnDeath) {
+			obj.transform.parent = transform.parent;
 
-			// Destroy it after delay
-			Destroy(sys.gameObject, sys.startLifetime);
+			var sys = obj.GetComponent<ParticleSystem>();
+			var trail = obj.GetComponent<TrailRenderer>();
+
+			if (sys != null) {
+				sys.Play();
+
+				// Destroy it after delay
+				Destroy(obj.gameObject, sys.startLifetime);
+			} else if (trail != null) {
+				// Destroy it after delay
+				Destroy(obj.gameObject, trail.time);
+			}
 		}
 
 		Destroy(gameObject);

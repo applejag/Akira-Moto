@@ -38,7 +38,7 @@ public abstract class BaseAI : MonoBehaviour {
 	} }
 	public float playerDistance { get { return Mathf.Abs(playerDelta); } }
 	public int playerSign { get { return player != null ? (int)Mathf.Sign(playerDelta) : 0; } }
-	public bool playerInRange { get { return player != null && playerDistance <= attackRange && !player.isEthereal; } }
+	public bool playerInRange { get { return player != null && playerDistance <= attackRange && !player.isWarping; } }
 	
 	protected virtual void Start() {
 		target = FindObjectOfType<PlayerScript>();
@@ -55,7 +55,7 @@ public abstract class BaseAI : MonoBehaviour {
 			return false;
 
 		TurnTowardsPlayer();
-		if (playerDistance > attackRange || player.isEthereal)
+		if (playerDistance > attackRange || player.isWarping)
 			WalkTowardsPlayer();
 
 		return playerInRange;

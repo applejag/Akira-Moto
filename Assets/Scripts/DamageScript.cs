@@ -11,7 +11,7 @@ public class DamageScript : MonoBehaviour {
 
 	private List<HealthScript> damaged = new List<HealthScript>();
 
-	public IEnumerator Start() {
+	IEnumerator Start() {
 		if (source == null)
 			DestroyImmediate(gameObject);
 
