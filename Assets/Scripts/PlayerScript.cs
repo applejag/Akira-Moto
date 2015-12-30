@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour {
 	public int warpLayer;
 	public Transform warpExitPos;
 	public float warpDistance = 3f;
+	public float colliderRadius = 0f;
 	public LayerMask rayLayerMask;
 
 	private AnimState state = AnimState.idle;
@@ -104,9 +105,11 @@ public class PlayerScript : MonoBehaviour {
 	void EthernalEnter() {
 		// Calc distance
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(transform.localScale.x, 0f), warpDistance, rayLayerMask);
-		if (hit.collider)
-			warpExitPos.transform.position = new Vector3(hit.point.x, warpExitPos.transform.position.y, warpExitPos.transform.position.z);
-		else
+		if (hit.collider) {
+			float sign = Mathf.Sign(transform.position.x - hit.point.x);
+			float x = hit.point.x + colliderRadius * sign;
+            warpExitPos.transform.position = new Vector3(x, warpExitPos.transform.position.y, warpExitPos.transform.position.z);
+		} else
 			warpExitPos.transform.position = transform.position + new Vector3(transform.localScale.x * warpDistance, 0f);
 		
 		gameObject.layer = warpLayer;

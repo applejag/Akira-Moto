@@ -26,6 +26,9 @@ public class HealthScript : MonoBehaviour {
 
 			HealthGUIScript.instance.UpdateUIElements(health, maxHealth);
 		}
+
+		if (isEnemy)
+			SpawnerScript.enemiesAlive++;
 	}
 
 	public void ModifyHealth(int delta) {
@@ -38,6 +41,9 @@ public class HealthScript : MonoBehaviour {
 		// Check if dead
 		if (health == 0) {
 			Destroy(gameObject);
+
+			if (isEnemy)
+				SpawnerScript.enemiesAlive--;
 		}
 
 		if (updatesUI)

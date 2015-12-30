@@ -276,7 +276,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102200}
   m_UseAutoMass: 1
-  m_Mass: 4.5484433
+  m_Mass: 4.5429826
   m_LinearDrag: 15
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -298,7 +298,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 1.8056645}
   serializedVersion: 2
-  m_Size: {x: 1.2515025, y: 3.634386}
+  m_Size: {x: 1.25, y: 3.634386}
 --- !u!95 &9512796
 Animator:
   serializedVersion: 3
@@ -338,9 +338,10 @@ MonoBehaviour:
   warpLayer: 10
   warpExitPos: {fileID: 485790}
   warpDistance: 5
+  colliderRadius: 1.25
   rayLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
 --- !u!114 &11451456
 MonoBehaviour:
   m_ObjectHideFlags: 1
