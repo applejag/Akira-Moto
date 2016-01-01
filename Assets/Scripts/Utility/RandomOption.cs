@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class RandomObject<T> where T : UnityEngine.Object {
+public abstract class RandomOption<T> where T : UnityEngine.Object {
 	[Range(0f, 1f)]
 	public float weight = 1f;
 	[Tooltip("Chance")]
@@ -10,6 +10,6 @@ public abstract class RandomObject<T> where T : UnityEngine.Object {
 }
 
 [System.Serializable]
-public class RandomGameObject : RandomObject<GameObject> {}
+public class RandomGameObject : RandomOption<GameObject> {}
 [System.Serializable]
-public class RandomSprite : RandomObject<Sprite> {}
+public class RandomSprite : RandomOption<Sprite> {}

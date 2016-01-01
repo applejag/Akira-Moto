@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using ExtensionMethods;
 
 public class SpawnerScript : MonoBehaviour {
 
@@ -21,6 +22,8 @@ public class SpawnerScript : MonoBehaviour {
 	public Vector3 camMin { get { return new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x - cameraMargin, 0f); } }
 	public Vector3 camMax { get { return new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one).x + cameraMargin, 0f); } }
 
+	// The spawning area is invalid if there is no place to spawn
+	// That would happen if the camera covers the entire area
 	public bool invalidArea { get { return (camMin.x <= leftEdge.x && camMax.x >= rightEdge.x); } }
 
 #if UNITY_EDITOR
@@ -28,9 +31,7 @@ public class SpawnerScript : MonoBehaviour {
 		spawnArea = Mathf.Max(spawnArea, 0f);
 		cameraMargin = Mathf.Max(cameraMargin, 0f);
 
-		foreach (var obj in objs) {
-			obj.chance = GetSpawningChance(obj);
-		}
+		objs.UpdateChance();
 	}
 
 	void OnDrawGizmos() {
@@ -102,37 +103,10 @@ public class SpawnerScript : MonoBehaviour {
 	}
 
 	void SpawnRandom() {
-		RandomGameObject obj = RandomObject();
+		var obj = objs.GetRandomObject();
 		if (obj == null || obj.target == null) return;
 
 		Instantiate(obj.target, RandomSpawnPoint(), obj.target.transform.rotation);
-	}
-
-	RandomGameObject RandomObject() {
-		float coin = Random.value;
-		float chance = 0f;
-
-		foreach (var obj in objs) {
-			chance += obj.chance;
-
-			// Approx(0.99999999f, 1.0f) gives true
-			// where Equals(0.99999999f, 1.0f) gives false
-			// and while adding there's a big chance I'll end up with a similar scenario
-			if (chance > coin || Mathf.Approximately(chance,coin))
-				return obj;
-		}
-		// Noone. SHOULD only happen if the objs list is empty
-		return null;
-	}
-
-	public float GetSpawningChance(RandomGameObject obj) {
-		float chance = 0f;
-
-		foreach (var o in objs) {
-			chance += o.weight;
-		}
-
-		return chance != 0f ? obj.weight / chance : 0f;
 	}
 
 	public Vector3 RandomSpawnPoint() {

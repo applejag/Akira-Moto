@@ -318,7 +318,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1611595219}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1124,7 +1124,6 @@ GameObject:
   - 4: {fileID: 825871943}
   - 50: {fileID: 825871946}
   - 61: {fileID: 825871944}
-  - 114: {fileID: 825871945}
   m_Layer: 11
   m_Name: 5 - Ground
   m_TagString: Ground
@@ -1161,22 +1160,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -6.5}
   serializedVersion: 2
   m_Size: {x: 192, y: 3}
---- !u!114 &825871945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 825871942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad6f4d762d7581428eca713fa26589a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scale: 0.1
-  offset: 0
-  offsetMotion: 0
-  wrap: 0
-  wrapAfter: 64
 --- !u!50 &825871946
 Rigidbody2D:
   serializedVersion: 2
@@ -1320,73 +1303,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1127802928}
   m_Script: {fileID: 11500000, guid: 9c66281df78226241ac55d19e4ebd0fd, type: 3}
---- !u!1 &948127901
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 948127902}
-  - 222: {fileID: 948127904}
-  - 114: {fileID: 948127903}
-  m_Layer: 0
-  m_Name: Title-Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &948127902
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 948127901}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 150}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1611595219}
-  m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &948127903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 948127901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 28f5458e2d9d9644c8cd839b78efac1c, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &948127904
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 948127901}
 --- !u!1 &963103201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,7 +2273,6 @@ RectTransform:
   m_Children:
   - {fileID: 98357500}
   - {fileID: 1633366777}
-  - {fileID: 948127902}
   - {fileID: 174683347}
   m_Father: {fileID: 1849071259}
   m_RootOrder: 1
@@ -2858,6 +2773,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1952498622}
   - 212: {fileID: 1952498623}
+  - 114: {fileID: 1952498624}
   m_Layer: 0
   m_Name: bg_02_moon
   m_TagString: Untagged
@@ -2907,6 +2823,28 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &1952498624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1952498621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eafa5ed270328f4599750dc86963d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 1
+  sprites:
+  - weight: 1
+    chance: 0.9345795
+    target: {fileID: 21300000, guid: e2a53ac83a42f804980e278be7caa2a7, type: 3}
+  - weight: 0.05
+    chance: 0.046728976
+    target: {fileID: 21300000, guid: 5b658571b9cbfb242b2bd724ff3fcb9f, type: 3}
+  - weight: 0.02
+    chance: 0.01869159
+    target: {fileID: 21300000, guid: 71f71e595a5a02f498b6d2ab93f265d1, type: 3}
 --- !u!1 &1979066022
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using ExtensionMethods;
 
 [CustomPropertyDrawer(typeof(RandomGameObject))]
 [CustomPropertyDrawer(typeof(RandomSprite))]
-public class RandomOption_Transform : PropertyDrawer {
+public class _RandomOption : PropertyDrawer {
 
 	public override float GetPropertyHeight (SerializedProperty property, GUIContent label) {
 		return base.GetPropertyHeight (property, label) * 2.5f;
