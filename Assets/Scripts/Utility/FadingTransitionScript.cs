@@ -9,6 +9,7 @@ public class FadingTransitionScript : MonoBehaviour {
 	public Image image;
 	public float fadingTime = 1f;
 	public bool fadeInOnAwake = true;
+	public bool unscaledTime = false;
 
 	private Callback callback;
 	private bool active = false;
@@ -22,7 +23,7 @@ public class FadingTransitionScript : MonoBehaviour {
 	void Update() {
 		if (active) {
 			float target = fadeIn ? 0f : 1f;
-			float alpha = Mathf.MoveTowards(image.color.a, target, Time.deltaTime / fadingTime);
+			float alpha = Mathf.MoveTowards(image.color.a, target, (unscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) / fadingTime);
 
 			image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
 			
@@ -46,6 +47,7 @@ public class FadingTransitionScript : MonoBehaviour {
 		this.fadeIn = fadeIn;
 		image.color = fadeIn ? Color.black : Color.clear;
 		active = true;
+		callback = null;
 	}
 
 }

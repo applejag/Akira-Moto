@@ -17,10 +17,10 @@ public class SpawnerScript : MonoBehaviour {
 
 	public static int enemiesAlive = 0;
 
-	public Vector3 leftEdge { get { return new Vector3(transform.position.x - spawnArea, 0f); } }
-	public Vector3 rightEdge { get { return new Vector3(transform.position.x + spawnArea, 0f); } }
-	public Vector3 camMin { get { return new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x - cameraMargin, 0f); } }
-	public Vector3 camMax { get { return new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one).x + cameraMargin, 0f); } }
+	private Vector3 leftEdge { get { return new Vector3(transform.position.x - spawnArea, 0f); } }
+	private Vector3 rightEdge { get { return new Vector3(transform.position.x + spawnArea, 0f); } }
+	private Vector3 camMin { get { return new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x - cameraMargin, 0f); } }
+	private Vector3 camMax { get { return new Vector3(Camera.main.ViewportToWorldPoint(Vector3.one).x + cameraMargin, 0f); } }
 
 	// The spawning area is invalid if there is no place to spawn
 	// That would happen if the camera covers the entire area

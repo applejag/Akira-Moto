@@ -124,6 +124,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2036956, guid: 31d6a53f480ff9d4ab4aca327b559bed, type: 2}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5091398, guid: 31d6a53f480ff9d4ab4aca327b559bed, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 31d6a53f480ff9d4ab4aca327b559bed, type: 2}
@@ -2738,6 +2742,7 @@ MonoBehaviour:
   image: {fileID: 740439544}
   fadingTime: 1
   fadeInOnAwake: 1
+  unscaledTime: 0
 --- !u!1 &2096862079
 GameObject:
   m_ObjectHideFlags: 0

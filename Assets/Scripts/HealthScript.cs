@@ -8,7 +8,7 @@ public class HealthScript : MonoBehaviour {
 	public bool isEnemy = true;
 	public bool updatesUI = false;
 
-	private static bool ui;
+	private static HealthScript ui;
 
 #if UNITY_EDITOR
 	void OnValidate() {
@@ -20,9 +20,9 @@ public class HealthScript : MonoBehaviour {
 	void Start() {
 		if (updatesUI) {
 			// see if theres multiple ui updators'
-			if (ui)
+			if (ui != null)
 				Debug.LogError("There should only be one that updates the ui!!");
-			ui = true;
+			ui = this;
 
 			HealthGUIScript.instance.UpdateUIElements(health, maxHealth);
 		}

@@ -52,6 +52,6 @@ TagManager:
   - name: Particles
     uniqueID: 2356550019
     locked: 0
-  - name: HUD
+  - name: UI
     uniqueID: 1329685607
     locked: 0

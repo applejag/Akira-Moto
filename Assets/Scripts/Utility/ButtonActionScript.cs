@@ -18,6 +18,10 @@ public class ButtonActionScript : MonoBehaviour {
 		});
 	}
 
+	public void RestartLevel() {
+		JumpToLevel(SceneManager.GetActiveScene().buildIndex);
+	}
+
 	public void QuitGame() {
 #if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
