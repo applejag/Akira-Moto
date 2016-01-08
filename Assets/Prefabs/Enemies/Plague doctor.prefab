@@ -12,8 +12,8 @@ GameObject:
   - 95: {fileID: 9581478}
   - 61: {fileID: 6124492}
   - 50: {fileID: 5025196}
-  - 114: {fileID: 11418906}
   - 114: {fileID: 11437298}
+  - 114: {fileID: 11418906}
   m_Layer: 9
   m_Name: Plague doctor
   m_TagString: Untagged
@@ -264,7 +264,6 @@ MonoBehaviour:
   health: 1
   maxHealth: 1
   isEnemy: 1
-  updatesUI: 0
 --- !u!114 &11453606
 MonoBehaviour:
   m_ObjectHideFlags: 1

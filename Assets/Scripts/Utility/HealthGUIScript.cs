@@ -12,7 +12,8 @@ public class HealthGUIScript : MonoBehaviour {
 	[Space]
 	public Sprite filledHeart;
 	public Sprite emptyHeart;
-
+	[Space]
+	public HealthScript health;
 	private List<Image> elements = new List<Image>();
 
 	void Awake() {

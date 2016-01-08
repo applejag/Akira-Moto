@@ -1,0 +1,257 @@
+fileFormatVersion: 2
+guid: 3f343db18f8bf664fab66124116ccd88
+timeCreated: 1452242297
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: enemy_2_death_0
+    21300002: enemy_2_death_1
+    21300004: enemy_2_death_2
+    21300006: enemy_2_death_3
+    21300008: enemy_2_death_4
+    21300010: enemy_2_death_5
+    21300012: enemy_2_death_6
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 16
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: enemy_2_death_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 47.399994}
+        - {x: -17, y: 28.399994}
+        - {x: -17, y: -2.600006}
+        - {x: 21, y: -2.600006}
+        - {x: 38, y: 12.399994}
+        - {x: 38, y: 39.399994}
+        - {x: 31, y: 47.399994}
+    - name: enemy_2_death_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22, y: 27.399994}
+        - {x: 20, y: 24.399994}
+        - {x: 14, y: 24.399994}
+        - {x: 9, y: 23.399994}
+        - {x: 3, y: 23.399994}
+        - {x: 18, y: 24.399994}
+        - {x: 24, y: 30.399994}
+        - {x: 23, y: 33.399994}
+        - {x: 20, y: 34.399994}
+        - {x: 4, y: 55.399994}
+        - {x: -17, y: 55.399994}
+        - {x: -17, y: -2.600006}
+        - {x: 22, y: -2.600006}
+        - {x: 38, y: 10.399994}
+        - {x: 38, y: 17.399994}
+        - {x: 33, y: 24.399994}
+      - - {x: 27, y: 25.399994}
+        - {x: 30, y: 26.399994}
+        - {x: 30, y: 29.399994}
+        - {x: 27, y: 30.399994}
+        - {x: 25, y: 28.399994}
+      - - {x: 26, y: 33.399994}
+        - {x: 29, y: 34.399994}
+        - {x: 29, y: 37.399994}
+        - {x: 26, y: 38.399994}
+        - {x: 24, y: 36.399994}
+    - name: enemy_2_death_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27, y: 10.399994}
+        - {x: 25, y: 8.399994}
+        - {x: 21, y: 9.399994}
+        - {x: 23, y: 9.399994}
+        - {x: 27, y: 10.399994}
+        - {x: 23, y: 18.399994}
+        - {x: 21, y: 19.399994}
+        - {x: -6, y: 19.399994}
+        - {x: -14, y: 16.399994}
+        - {x: -14, y: 14.399994}
+        - {x: -11, y: 12.399994}
+        - {x: -8, y: 11.399994}
+        - {x: -14, y: 5.399994}
+        - {x: -14, y: -0.6000061}
+        - {x: -13, y: -2.600006}
+        - {x: 36, y: -2.600006}
+        - {x: 37, y: -0.6000061}
+        - {x: 37, y: 6.399994}
+        - {x: 36, y: 9.399994}
+      - - {x: 32, y: 11.399994}
+        - {x: 35, y: 12.399994}
+        - {x: 35, y: 15.399994}
+        - {x: 32, y: 16.399994}
+        - {x: 30, y: 14.399994}
+      - - {x: -8, y: 51.399994}
+        - {x: -14, y: 51.399994}
+        - {x: -20, y: 46.399994}
+        - {x: -20, y: 31.399994}
+        - {x: -11, y: 21.399994}
+        - {x: 1, y: 21.399994}
+        - {x: 11, y: 32.399994}
+        - {x: 11, y: 38.399994}
+        - {x: 8, y: 43.399994}
+      - - {x: 14, y: 31.399994}
+        - {x: 17, y: 32.399994}
+        - {x: 17, y: 35.399994}
+        - {x: 14, y: 36.399994}
+        - {x: 12, y: 34.399994}
+    - name: enemy_2_death_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31, y: 15.399994}
+        - {x: 7, y: 15.399994}
+        - {x: -8, y: 7.399994}
+        - {x: -14, y: 0.3999939}
+        - {x: -13, y: -2.600006}
+        - {x: 34, y: -2.600006}
+        - {x: 37, y: 2.399994}
+        - {x: 37, y: 12.399994}
+        - {x: 36, y: 14.399994}
+      - - {x: -26, y: 32.399994}
+        - {x: -27, y: 30.399994}
+        - {x: -27, y: 18.399994}
+        - {x: -25, y: 10.399994}
+        - {x: -18, y: 8.399994}
+        - {x: 1, y: 8.399994}
+        - {x: 6, y: 12.399994}
+        - {x: 6, y: 24.399994}
+        - {x: 3, y: 32.399994}
+      - - {x: 8, y: 26.399994}
+        - {x: 11, y: 27.399994}
+        - {x: 11, y: 30.399994}
+        - {x: 8, y: 31.399994}
+        - {x: 6, y: 29.399994}
+    - name: enemy_2_death_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 18.400002}
+        - {x: -25, y: 17.400002}
+        - {x: -31, y: 13.400002}
+        - {x: -31, y: 6.4000015}
+        - {x: -29, y: 1.4000015}
+        - {x: -23, y: -2.5999985}
+        - {x: 38, y: -2.5999985}
+        - {x: 38, y: 16.400002}
+        - {x: 31, y: 18.400002}
+    - name: enemy_2_death_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 12.400002}
+        - {x: -31, y: 9.400002}
+        - {x: -31, y: 2.4000015}
+        - {x: -29, y: -2.5999985}
+        - {x: 30, y: -2.5999985}
+        - {x: 37, y: -1.5999985}
+        - {x: 37, y: 12.400002}
+    - name: enemy_2_death_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: 12.400002}
+        - {x: -31, y: 9.400002}
+        - {x: -31, y: -2.5999985}
+        - {x: 37, y: -2.5999985}
+        - {x: 37, y: 9.400002}
+        - {x: 35, y: 12.400002}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

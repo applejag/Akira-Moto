@@ -30,7 +30,7 @@ public class PlayerScript : MonoBehaviour {
 	public float warpDistance = 3f;
 	public float colliderRadius = 0f;
 	public LayerMask rayLayerMask;
-
+	
 	private AnimState state = AnimState.idle;
 	private bool warp;
 
@@ -81,11 +81,10 @@ public class PlayerScript : MonoBehaviour {
 		bool warp = Input.GetButton("Warp");
 
 		// Tell the animator
-		if (attack && state != AnimState.warping) anim.SetTrigger("Attack");
+		if (attack && state != AnimState.warping && state != AnimState.turning) anim.SetTrigger("Attack");
 		anim.SetBool("Warp", warp);
-
 	}
-
+	
 	void Turn(bool right) {
 		int sign = right ? 1 : -1;
 
@@ -137,7 +136,7 @@ public class PlayerScript : MonoBehaviour {
 	#endregion
 
 	public enum AnimState {
-		idle, moving, attack, warping
+		idle, moving, attack, warping, turning
 	}
 
 }
