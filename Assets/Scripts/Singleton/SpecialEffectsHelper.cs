@@ -1,20 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpecialEffectsHelper : MonoBehaviour {
-
-	public static SpecialEffectsHelper instance;
+public class SpecialEffectsHelper : SingletonBaseScript<SpecialEffectsHelper> {
 
 	public ParticleSystem smokeEffect;
 	public ParticleSystem fireEffect;
-
-	void Awake () {
-		if (instance != null) {
-			print ("THERES MOAR???");
-		}
-
-		instance = this;
-	}
 
 	public static void Explosion(Vector3 position) {
 		// zUwEIt9ez7M

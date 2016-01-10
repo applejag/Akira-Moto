@@ -4,28 +4,23 @@ using System;
 
 public class PlagueDoctorAI : BaseAI {
 
+	protected override bool turnWithAnimation { get { return false; } }
+
 	[Header("PlagueDoctorAI")]
 	public ParticleSystem[] bottleParticles;
 	public GameObject prefab;
 	public Transform spawnPoint;
-	public Animator anim;
 
-	void FixedUpdate() {
-		if (player == null) {
-			// Idle
-			anim.SetBool("Attack", false);
-			anim.SetFloat("Movement", 0f);
-			anim.SetBool("Walking", false);
-            return;
+	protected override void StateChange(State last) {
+		base.StateChange(last);
+
+		if (state == State.dead) {
+			// Disable all particles
+			for (int i=0; i<bottleParticles.Length; i++) {
+				BottleParticlesOFF(i);
+            }
 		}
-
-		bool attack = WalkIntoAttackRange();
-
-		anim.SetBool("Attack", attack);
-		anim.SetBool("Walking", Mathf.Abs(body.velocity.x) > 0.5f);
-		anim.SetFloat("Movement", Mathf.Abs(body.velocity.x));
 	}
-	
 
 	#region Animation events
 	/*
@@ -51,6 +46,5 @@ public class PlagueDoctorAI : BaseAI {
 		var damage = clone.GetComponent<DamageScript>();
 		damage.source = health;
 	}
-
 	#endregion
 }

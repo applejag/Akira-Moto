@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ExtensionMethods;
 
 public abstract class BaseAI : MonoBehaviour {
 
+	protected abstract bool turnWithAnimation { get; }
+
 	[Header("BaseAI")]
+	public Animator anim;
 	public Rigidbody2D body;
 	public HealthScript health;
 	public float speed = 1f; // units per second
@@ -18,6 +22,7 @@ public abstract class BaseAI : MonoBehaviour {
 	}
 
 	private State currentState = State.idle;
+	// GETS SET BY THE ANIMATION BEHAVIOUR
 	public State state {
 		get { return currentState; }
 		set {
@@ -38,8 +43,17 @@ public abstract class BaseAI : MonoBehaviour {
 	} }
 	public float playerDistance { get { return Mathf.Abs(playerDelta); } }
 	public int playerSign { get { return player != null ? (int)Mathf.Sign(playerDelta) : 0; } }
-	public bool playerInRange { get { return player != null && playerDistance <= attackRange && !player.isWarping; } }
-	
+	public bool playerInRange { get {
+			return player != null
+				&& playerDistance <= attackRange // in range
+				&& !player.isWarping // player isnt warping
+				&& currentSign == playerSign; // facing player
+		} }
+
+	public int currentSign { get { return (int)Mathf.Sign(transform.localScale.x); } }
+
+	private int turnSign;
+
 	protected virtual void Start() {
 		target = FindObjectOfType<PlayerScript>();
 	}
@@ -47,6 +61,21 @@ public abstract class BaseAI : MonoBehaviour {
 	protected virtual void Update() {
 		if (attackDelay > 0)
 			attackDelay = Mathf.Max(attackDelay - Time.deltaTime, 0f);
+	}
+
+	public virtual void FixedUpdate() {
+		if (state == State.dead)
+			return;
+		
+		bool inRange = WalkIntoAttackRange();
+
+		anim.SetBool("Attack", inRange && state != State.turning);
+		anim.SetBool("Walking", Mathf.Abs(body.velocity.x) > 0.5f);
+		anim.SetFloat("Movement", Mathf.Abs(body.velocity.x));
+	}
+
+	public virtual void OnDeath() {
+		anim.SetBool("Dead", true);
 	}
 
 	// Walk close enough to player
@@ -80,11 +109,19 @@ public abstract class BaseAI : MonoBehaviour {
 
 	public void TurnTowards(float x) {
 		float delta = x - transform.position.x;
-		int sign = (int)Mathf.Sign(delta);
+		turnSign = (int)Mathf.Sign(delta);
 
-		Vector3 scale = transform.localScale;
-		scale.x = Mathf.Abs(scale.x) * (sign != 0 ? sign : 1);
-		transform.localScale = scale;
+		if (currentSign != turnSign && state != State.turning) {
+			// TURN
+
+			if (turnWithAnimation) {
+				// Play animation
+				anim.SetTrigger("Turn");
+			} else if(state == State.idle || state == State.moving) {
+				// Turn instantly
+				TurnComplete();
+			}
+		}
 	}
 
 	public void TurnTowardsPlayer() {
@@ -93,14 +130,36 @@ public abstract class BaseAI : MonoBehaviour {
 
 		TurnTowards(player.transform.position.x);
 	}
+	
+	public void TurnComplete() {
+		if (turnSign == 0)
+			return;
+
+		Vector3 scale = transform.localScale;
+		scale.x = Mathf.Abs(scale.x) * turnSign;
+		transform.localScale = scale;
+	}
 
 	protected virtual void StateChange(State last) {
 		if (last == State.attacking)
 			canAttack = false;
+
+		if (last == State.turning)
+			TurnComplete();
+
+		if (state == State.dead) {
+			turnSign = playerSign;
+			TurnComplete();
+			
+			// Disable the colliders
+			foreach (var collider in GetComponentsInChildren<Collider2D>()) {
+				collider.enabled = false;
+			}
+		}
 	}
 
 	public enum State {
-		idle, moving, attacking
+		idle, moving, attacking, turning, dead
 	}
 
 }

@@ -3,9 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class HealthGUIScript : MonoBehaviour {
-
-	public static HealthGUIScript instance;
+public class HealthGUIScript : SingletonBaseScript<HealthGUIScript> { 
 	
 	// Where to spawn the health objects
 	public RectTransform uiParent;
@@ -15,13 +13,6 @@ public class HealthGUIScript : MonoBehaviour {
 	[Space]
 	public HealthScript health;
 	private List<Image> elements = new List<Image>();
-
-	void Awake() {
-		if (instance != null)
-			Debug.LogError("There can only be one instance! D:");
-
-		instance = this;
-	}
 
 	// Create UI elements from scratch
 	private void CreateUIElements(float maxHealth) {

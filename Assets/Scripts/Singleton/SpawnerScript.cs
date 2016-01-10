@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ExtensionMethods;
 
-public class SpawnerScript : MonoBehaviour {
+public class SpawnerScript : SingletonBaseScript<SpawnerScript> { 
 
 	public float spawnArea = 64f;
 	public float cameraMargin = 0f;
@@ -14,7 +14,7 @@ public class SpawnerScript : MonoBehaviour {
 	public int spawnCap = 10;
 	[HideInInspector]
 	public List<RandomGameObject> objs = new List<RandomGameObject>();
-
+	
 	public static int enemiesAlive = 0;
 
 	private Vector3 leftEdge { get { return new Vector3(transform.position.x - spawnArea, 0f); } }
@@ -94,10 +94,11 @@ public class SpawnerScript : MonoBehaviour {
 	void Update() {
 		timeLeft -= Time.deltaTime;
 
-		if (timeLeft <= 0f && enemiesAlive < spawnCap) {
+		if (timeLeft <= 0f && enemiesAlive < spawnCap && !ScoreKeeperScript.gameover) {
 			timeLeft += spawnDelay;
 			SpawnRandom();
-		} else if(enemiesAlive >= spawnCap) {
+		}
+		if (enemiesAlive >= spawnCap || ScoreKeeperScript.gameover) {
 			timeLeft = 0;
 		}
 	}

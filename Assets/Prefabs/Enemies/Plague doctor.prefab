@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df6dc53c08b7e14e8684eb113551a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 9581478}
   body: {fileID: 5025196}
   health: {fileID: 11437298}
   speed: 20
@@ -249,7 +250,6 @@ MonoBehaviour:
   - {fileID: 19808820}
   prefab: {fileID: 175096, guid: c04dd7cf27a2af74c80e64cf563cbb25, type: 2}
   spawnPoint: {fileID: 438038}
-  anim: {fileID: 9581478}
 --- !u!114 &11437298
 MonoBehaviour:
   m_ObjectHideFlags: 1

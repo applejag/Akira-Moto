@@ -6,6 +6,7 @@
 		_Color ("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
 		_Shadow ("Shadow color", Color) = (0,0,0,1)
+		[MaterialToggle] _Inverted ("Inverted", Float) = 0
 	}
 
 	SubShader
@@ -53,13 +54,18 @@
 			};
 			
 			fixed4 _Color;
+			fixed4 _Shadow;
+			float _Inverted;
 
 			v2f vert(appdata_t IN)
 			{
 				v2f OUT;
 				OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
 				OUT.texcoord = IN.texcoord;
-				OUT.color = IN.color * _Color;
+				if (_Inverted == 0)
+					OUT.color = IN.color * _Color;
+				else
+					OUT.color = IN.color * _Shadow;
 				#ifdef PIXELSNAP_ON
 				OUT.vertex = UnityPixelSnap (OUT.vertex);
 				#endif
@@ -87,6 +93,10 @@
 			{
 				fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color;
 				c.rgb *= c.a;
+
+				if (c.a == 0)
+					discard;
+
 				return c;
 			}
 		ENDCG
@@ -120,15 +130,20 @@
 				fixed4 color    : COLOR;
 				float2 texcoord  : TEXCOORD0;
 			};
-			
+
+			fixed4 _Color;
 			fixed4 _Shadow;
+			float _Inverted;
 
 			v2f vert(appdata_t IN)
 			{
 				v2f OUT;
 				OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
 				OUT.texcoord = IN.texcoord;
-				OUT.color = IN.color * _Shadow;
+				if (_Inverted == 0)
+					OUT.color = IN.color * _Shadow;
+				else
+					OUT.color = IN.color * _Color;
 				#ifdef PIXELSNAP_ON
 				OUT.vertex = UnityPixelSnap (OUT.vertex);
 				#endif

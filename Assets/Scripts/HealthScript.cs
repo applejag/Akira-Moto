@@ -6,7 +6,8 @@ public class HealthScript : MonoBehaviour {
 	public int health = 1;
 	public int maxHealth = 1;
 	public bool isEnemy = true;
-	
+
+	private bool dead;	
 	public bool updatesUI { get { return HealthGUIScript.instance != null && HealthGUIScript.instance.health == this; } }
 
 #if UNITY_EDITOR
@@ -26,6 +27,9 @@ public class HealthScript : MonoBehaviour {
 	}
 
 	public void ModifyHealth(int delta) {
+		if (dead)
+			return;
+
 		// Limit it; because health can't go below 0 and above /maxHealth/
 		delta = Mathf.Clamp(delta, -health, maxHealth - health);
 
@@ -34,10 +38,14 @@ public class HealthScript : MonoBehaviour {
 
 		// Check if dead
 		if (health == 0) {
-			Destroy(gameObject);
+			dead = true;
 
-			if (isEnemy)
+			SendMessage("OnDeath");
+
+			if (isEnemy) {
 				SpawnerScript.enemiesAlive--;
+				ScoreKeeperScript.score++;
+			}
 		}
 
 		if (updatesUI)

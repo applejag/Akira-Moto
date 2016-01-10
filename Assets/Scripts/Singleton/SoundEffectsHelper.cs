@@ -1,22 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SoundEffectsHelper : MonoBehaviour {
-
-	public static SoundEffectsHelper instance;
+public class SoundEffectsHelper : SingletonBaseScript<SoundEffectsHelper> {
 
 	public Sound explosionSound;
 	public Sound playerShotSound;
 	public Sound enemyShotSound;
 	public Sound lifeSound;
-
-	void Awake () {
-		if (instance != null) {
-			Debug.LogError ("WAZAAAAAAAAAAAAAAAAA MAH BROTHEREN");
-		}
-		
-		instance = this;
-	}
 
 	public static void PlayExplosionSound() {
 		instance.explosionSound.PlaySound();
@@ -44,8 +34,6 @@ public class SoundEffectsHelper : MonoBehaviour {
 		public AudioClip clip = null;
 		[Range(0f,1f)]
 		public float volume = 1f;
-
-		
 
 		public void PlaySound() {
 			SoundEffectsHelper.PlaySound(clip, volume);
