@@ -28,6 +28,17 @@ public class RunnerAI : BaseAI {
 		DamageScript.SpawnDamage(damagePoint.position, damageRadius, 1, health);
 	}
 
+	public void PlayAttackSound() {
+		SoundEffectsHelper.instance.PlaySwooshSound(damagePoint.position);
+	}
+
+	public void PlayStepSound() {
+		SoundEffectsHelper.instance.PlayDirtSound(transform.position);
+	}
+
+	public void SpawnSoul() {
+		MoonScript.instance.SpawnSoulAt(transform.position);
+	}
 	#endregion
 
 }

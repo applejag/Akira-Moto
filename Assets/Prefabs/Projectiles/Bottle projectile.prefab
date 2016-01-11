@@ -353,6 +353,7 @@ MonoBehaviour:
   - {fileID: 453722}
   - {fileID: 462550}
   - {fileID: 491626}
+  - {fileID: 418644}
   playerCollision: {fileID: 19873114}
   groundCollision: {fileID: 19818730}
 --- !u!114 &11499170

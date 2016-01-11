@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Wall
+  - Soul
   layers:
   - Default
   - TransparentFX

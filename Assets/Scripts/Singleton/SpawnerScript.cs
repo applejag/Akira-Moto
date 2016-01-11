@@ -94,11 +94,11 @@ public class SpawnerScript : SingletonBaseScript<SpawnerScript> {
 	void Update() {
 		timeLeft -= Time.deltaTime;
 
-		if (timeLeft <= 0f && enemiesAlive < spawnCap && !ScoreKeeperScript.gameover) {
+		if (timeLeft <= 0f && enemiesAlive < spawnCap && !GameOverScript.instance.over) {
 			timeLeft += spawnDelay;
 			SpawnRandom();
 		}
-		if (enemiesAlive >= spawnCap || ScoreKeeperScript.gameover) {
+		if (enemiesAlive >= spawnCap) {
 			timeLeft = 0;
 		}
 	}

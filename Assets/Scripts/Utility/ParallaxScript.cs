@@ -15,11 +15,9 @@ public class ParallaxScript : MonoBehaviour {
 
 		// Alter
 		offset += offsetMotion * Time.deltaTime;
+		if (wrap) offset %= wrapAfter;
 
 		pos.x = Camera.main.transform.position.x * scale + offset;
-
-		if (wrap)
-			offset %= wrapAfter;
 
 		// Apply
 		transform.position = pos;

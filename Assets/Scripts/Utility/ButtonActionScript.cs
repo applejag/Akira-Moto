@@ -7,19 +7,22 @@ public class ButtonActionScript : MonoBehaviour {
 	public FadingTransitionScript fading;
 
 	public void JumpToLevel(int level) {
-		fading.StartTransition(false, delegate () {
+		ResetTimeScale();
+        fading.StartTransition(false, delegate () {
 			SceneManager.LoadScene(level);
 		});
 	}
 
 	public void JumpToLevel(string level) {
-		fading.StartTransition(false, delegate () {
+		ResetTimeScale();
+        fading.StartTransition(false, delegate () {
 			SceneManager.LoadScene(level);
 		});
 	}
 
 	public void RestartLevel() {
-		JumpToLevel(SceneManager.GetActiveScene().buildIndex);
+		ResetTimeScale();
+        JumpToLevel(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	public void QuitGame() {
@@ -28,5 +31,10 @@ public class ButtonActionScript : MonoBehaviour {
 #else
 		Application.Quit();
 #endif
+	}
+
+	void ResetTimeScale() {
+		Time.timeScale = 1f;
+		Time.fixedDeltaTime = 0.02f;
 	}
 }

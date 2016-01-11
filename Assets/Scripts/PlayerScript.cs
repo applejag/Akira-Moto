@@ -32,9 +32,9 @@ public class PlayerScript : MonoBehaviour {
 	public LayerMask rayLayerMask;
 	
 	private AnimState state = AnimState.idle;
-	private bool warp;
 
 	public bool isWarping { get { return state == AnimState.warping; } }
+	public bool isDead { get { return state == AnimState.dead; } }
 
 #if UNITY_EDITOR
 	void OnDrawGizmos() {
@@ -47,6 +47,10 @@ public class PlayerScript : MonoBehaviour {
 #endif
 
 	void FixedUpdate() {
+		if (state == AnimState.dead || GameOverScript.instance.over)
+			return;
+
+
 		// Check for input
 		float movement = Input.GetAxis("Horizontal");
 
@@ -70,7 +74,9 @@ public class PlayerScript : MonoBehaviour {
 			Turn(movement > 0);
 	}
 
-	void Update() { 
+	void Update() {
+		if (state == AnimState.dead || GameOverScript.instance.over)
+			return;
 
 		//-----------------------
 		// Reading input
@@ -81,8 +87,25 @@ public class PlayerScript : MonoBehaviour {
 		bool warp = Input.GetButton("Warp");
 
 		// Tell the animator
-		if (attack && state != AnimState.warping && state != AnimState.turning) anim.SetTrigger("Attack");
+		if (attack && state != AnimState.warping && state != AnimState.turning && state != AnimState.attack) anim.SetTrigger("Attack");
 		anim.SetBool("Warp", warp);
+	}
+
+	void OnDeath() {
+		anim.SetBool("Dead", true);
+		state = AnimState.dead;
+		GameOverScript.instance.over = true;
+
+		// Disable the emitters
+		foreach(var part in GetComponentsInChildren<ParticleSystem>()) {
+			var em = part.emission;
+			em.enabled = false;
+		}
+
+		// Disable the colliders
+		foreach (var collider in GetComponentsInChildren<Collider2D>()) {
+			collider.enabled = false;
+		}
 	}
 	
 	void Turn(bool right) {
@@ -133,10 +156,18 @@ public class PlayerScript : MonoBehaviour {
 
 		this.state = state;
 	}
+
+	public void PlayAttackSound() {
+		SoundEffectsHelper.instance.PlaySwooshSound(damagePoint.position);
+	}
+
+	public void PlayStepSound() {
+		SoundEffectsHelper.instance.PlayDirtSound(transform.position);
+	}
 	#endregion
 
 	public enum AnimState {
-		idle, moving, attack, warping, turning
+		idle, moving, attack, warping, turning, dead
 	}
 
 }

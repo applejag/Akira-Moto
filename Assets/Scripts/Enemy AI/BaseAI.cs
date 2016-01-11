@@ -66,10 +66,10 @@ public abstract class BaseAI : MonoBehaviour {
 	public virtual void FixedUpdate() {
 		if (state == State.dead)
 			return;
-		
-		bool inRange = WalkIntoAttackRange();
 
-		anim.SetBool("Attack", inRange && state != State.turning);
+		WalkIntoAttackRange();
+
+		anim.SetBool("Attack", state != State.turning && playerInRange && !player.isDead);
 		anim.SetBool("Walking", Mathf.Abs(body.velocity.x) > 0.5f);
 		anim.SetFloat("Movement", Mathf.Abs(body.velocity.x));
 	}
@@ -79,15 +79,13 @@ public abstract class BaseAI : MonoBehaviour {
 	}
 
 	// Walk close enough to player
-	public bool WalkIntoAttackRange() {
+	public void WalkIntoAttackRange() {
 		if (player == null)
-			return false;
+			return;
 
 		TurnTowardsPlayer();
 		if (playerDistance > attackRange || player.isWarping)
 			WalkTowardsPlayer();
-
-		return playerInRange;
 	}
 
 	public void WalkTowards(float x) {

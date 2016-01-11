@@ -77,7 +77,12 @@ public class BottleProjectileScript : MonoBehaviour {
 			var trail = obj.GetComponent<TrailRenderer>();
 
 			if (sys != null) {
-				sys.Play();
+				if (sys.loop) {
+					var em = sys.emission;
+					em.enabled = false;
+				} else {
+					sys.Play();
+				}
 
 				// Destroy it after delay
 				Destroy(obj.gameObject, sys.startLifetime);
@@ -88,6 +93,7 @@ public class BottleProjectileScript : MonoBehaviour {
 		}
 
 		Destroy(gameObject);
+		SoundEffectsHelper.instance.PlayGlasShatterSound(transform.position);
 
 	}
 

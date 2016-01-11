@@ -27,8 +27,8 @@ public class HealthScript : MonoBehaviour {
 	}
 
 	public void ModifyHealth(int delta) {
-		if (dead)
-			return;
+		if (dead) return;
+		if (!isEnemy && GameOverScript.instance.over) return;
 
 		// Limit it; because health can't go below 0 and above /maxHealth/
 		delta = Mathf.Clamp(delta, -health, maxHealth - health);
@@ -44,7 +44,6 @@ public class HealthScript : MonoBehaviour {
 
 			if (isEnemy) {
 				SpawnerScript.enemiesAlive--;
-				ScoreKeeperScript.score++;
 			}
 		}
 

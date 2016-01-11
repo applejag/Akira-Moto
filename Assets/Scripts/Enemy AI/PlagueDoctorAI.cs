@@ -46,5 +46,9 @@ public class PlagueDoctorAI : BaseAI {
 		var damage = clone.GetComponent<DamageScript>();
 		damage.source = health;
 	}
+
+	public void SpawnSoul() {
+		MoonScript.instance.SpawnSoulAt(transform.position);
+	}
 	#endregion
 }
