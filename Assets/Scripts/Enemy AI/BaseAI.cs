@@ -10,7 +10,7 @@ public abstract class BaseAI : MonoBehaviour {
 	public Animator anim;
 	public Rigidbody2D body;
 	public HealthScript health;
-	public float speed = 1f; // units per second
+	public Vector2 speed = Vector2.one; // units per second
 	public float attackRange = 1f;
 	public float attackCooldown = 1f; // delay in seconds
 	public float attackVariety = 0.3f; // ± seconds
@@ -21,6 +21,7 @@ public abstract class BaseAI : MonoBehaviour {
 		set { attackDelay = value ? attackCooldown + Random.Range(-attackVariety,attackVariety) : 0f; }
 	}
 
+	private float moveSpeed;
 	private State currentState = State.idle;
 	// GETS SET BY THE ANIMATION BEHAVIOUR
 	public State state {
@@ -56,6 +57,7 @@ public abstract class BaseAI : MonoBehaviour {
 
 	protected virtual void Start() {
 		target = FindObjectOfType<PlayerScript>();
+		moveSpeed = Random.Range(speed.x, speed.y);
 	}
 
 	protected virtual void Update() {
@@ -95,7 +97,7 @@ public abstract class BaseAI : MonoBehaviour {
 		if (dist < 1f) // Close enough
 			return;
 
-		body.AddForce(new Vector2(Mathf.Sign(delta) * speed, 0f), ForceMode2D.Force);
+		body.AddForce(new Vector2(Mathf.Sign(delta) * moveSpeed, 0f), ForceMode2D.Force);
 	}
 
 	public void WalkTowardsPlayer() {

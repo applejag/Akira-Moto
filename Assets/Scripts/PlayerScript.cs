@@ -47,8 +47,10 @@ public class PlayerScript : MonoBehaviour {
 #endif
 
 	void FixedUpdate() {
-		if (state == AnimState.dead || GameOverScript.instance.over)
-			return;
+		if (state == AnimState.dead || GameOverScript.instance.over) {
+			anim.SetBool("Walking", false);
+			anim.SetFloat("Movement", 1);
+		}
 
 
 		// Check for input
@@ -75,8 +77,11 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void Update() {
-		if (state == AnimState.dead || GameOverScript.instance.over)
+		if (state == AnimState.dead || GameOverScript.instance.over) {
+			anim.ResetTrigger("Attack");
+			anim.SetBool("Warp", false);
 			return;
+		}
 
 		//-----------------------
 		// Reading input

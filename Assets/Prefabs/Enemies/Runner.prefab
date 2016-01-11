@@ -165,7 +165,7 @@ MonoBehaviour:
   anim: {fileID: 9508842}
   body: {fileID: 5031312}
   health: {fileID: 11452638}
-  speed: 80
+  speed: {x: 80, y: 120}
   attackRange: 4
   attackCooldown: 3
   attackVariety: 0.5
@@ -251,7 +251,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: speed.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed.y
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 116764}

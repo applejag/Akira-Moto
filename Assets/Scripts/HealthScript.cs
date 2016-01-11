@@ -23,7 +23,7 @@ public class HealthScript : MonoBehaviour {
 		}
 
 		if (isEnemy)
-			SpawnerScript.enemiesAlive++;
+			SpawnerScript.instance.enemiesAlive++;
 	}
 
 	public void ModifyHealth(int delta) {
@@ -43,7 +43,7 @@ public class HealthScript : MonoBehaviour {
 			SendMessage("OnDeath");
 
 			if (isEnemy) {
-				SpawnerScript.enemiesAlive--;
+				SpawnerScript.instance.enemiesAlive--;
 			}
 		}
 
