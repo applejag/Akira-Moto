@@ -3,12 +3,15 @@ using System.Collections;
 
 public class HealthScript : MonoBehaviour {
 
-	public int health = 1;
-	public int maxHealth = 1;
-	public bool isEnemy = true;
+	[HideInInspector]
+	public int health, maxHealth = 1;
+	[HideInInspector]
+	public float timePerDamage = 60; // seconds
 
-	private bool dead;	
-	public bool updatesUI { get { return HealthGUIScript.instance != null && HealthGUIScript.instance.health == this; } }
+	public bool isEnemy = true;
+	public bool isPlayer { get { return !isEnemy; } }
+
+	private bool dead;
 
 #if UNITY_EDITOR
 	void OnValidate() {
@@ -18,37 +21,34 @@ public class HealthScript : MonoBehaviour {
 #endif
 
 	void Start() {
-		if (updatesUI) {
-			HealthGUIScript.instance.UpdateUIElements(health, maxHealth);
-		}
-
 		if (isEnemy)
 			SpawnerScript.instance.enemiesAlive++;
 	}
 
-	public void ModifyHealth(int delta) {
+	public void ModifyHealth(int delta, bool raw = false) {
 		if (dead) return;
-		if (!isEnemy && GameOverScript.instance.over) return;
+		if (isPlayer && GameOverScript.instance.over) return;
 
 		// Limit it; because health can't go below 0 and above /maxHealth/
 		delta = Mathf.Clamp(delta, -health, maxHealth - health);
 
-		// Change the health
-		health += delta;
+		if (isEnemy || raw) {
+			// Change the health
+			health += delta;
 
-		// Check if dead
-		if (health == 0) {
-			dead = true;
+			// Check if dead
+			if (health == 0) {
+				dead = true;
 
-			SendMessage("OnDeath");
+				SendMessage("OnDeath");
 
-			if (isEnemy) {
-				SpawnerScript.instance.enemiesAlive--;
+				if (isEnemy) {
+					SpawnerScript.instance.enemiesAlive--;
+				}
 			}
+		} else if (isPlayer && !raw) {
+			ScoreKeeperScript.instance.AddTime(delta * timePerDamage);
 		}
-
-		if (updatesUI)
-			HealthGUIScript.instance.UpdateUIElements(health, maxHealth);
 	}
 	
 }

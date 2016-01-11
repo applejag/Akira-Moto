@@ -245,6 +245,7 @@ MonoBehaviour:
   attackRange: 10
   attackCooldown: 3
   attackVariety: 0.5
+  timeReward: 3
   bottleParticles:
   - {fileID: 19829418}
   - {fileID: 19808820}
@@ -263,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   maxHealth: 1
+  timePerDamage: 60
   isEnemy: 1
 --- !u!114 &11453606
 MonoBehaviour:
@@ -3430,6 +3432,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: speed.y
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: timeReward
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

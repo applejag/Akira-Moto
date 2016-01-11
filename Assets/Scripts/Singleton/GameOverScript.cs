@@ -67,8 +67,11 @@ public class GameOverScript : SingletonBaseScript<GameOverScript> {
 				// Zoom
 				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, zoomToSize, Time.unscaledDeltaTime / zoomToSizeDelay);
 
-				if (Time.timeScale == slowDownTo)
+				if (Time.timeScale == slowDownTo) {
 					stage = Stages.reveal;
+					SetHeight(title, 0);
+					SetHeight(buttons, 0);
+				}
 				break;
 
 			case Stages.reveal:

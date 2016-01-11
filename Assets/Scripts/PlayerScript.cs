@@ -50,6 +50,7 @@ public class PlayerScript : MonoBehaviour {
 		if (state == AnimState.dead || GameOverScript.instance.over) {
 			anim.SetBool("Walking", false);
 			anim.SetFloat("Movement", 1);
+			return;
 		}
 
 

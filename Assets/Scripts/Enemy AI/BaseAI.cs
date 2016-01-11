@@ -14,6 +14,7 @@ public abstract class BaseAI : MonoBehaviour {
 	public float attackRange = 1f;
 	public float attackCooldown = 1f; // delay in seconds
 	public float attackVariety = 0.3f; // ± seconds
+	public float timeReward = 0f; // seconds gained for killing it
 
 	private float attackDelay = 0f;
 	public bool canAttack {
@@ -78,6 +79,7 @@ public abstract class BaseAI : MonoBehaviour {
 
 	public virtual void OnDeath() {
 		anim.SetBool("Dead", true);
+		ScoreKeeperScript.instance.AddTime(timeReward);
 	}
 
 	// Walk close enough to player
