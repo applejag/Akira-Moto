@@ -241,11 +241,11 @@ MonoBehaviour:
   anim: {fileID: 9581478}
   body: {fileID: 5025196}
   health: {fileID: 11437298}
-  speed: {x: 20, y: 30}
+  speed: {x: 15, y: 45}
   attackRange: 10
   attackCooldown: 3
   attackVariety: 0.5
-  timeReward: 3
+  timeReward: 20
   bottleParticles:
   - {fileID: 19829418}
   - {fileID: 19808820}
@@ -3427,15 +3427,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: speed.x
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed.y
-      value: 30
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: timeReward
-      value: 3
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

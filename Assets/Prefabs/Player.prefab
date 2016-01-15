@@ -367,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   maxHealth: 5
+  timePerDamage: 40
   isEnemy: 0
 --- !u!114 &11464170
 MonoBehaviour:

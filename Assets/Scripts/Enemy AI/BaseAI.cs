@@ -53,6 +53,7 @@ public abstract class BaseAI : MonoBehaviour {
 		} }
 
 	public int currentSign { get { return (int)Mathf.Sign(transform.localScale.x); } }
+	public bool dead { get { return health.health > 0; } }
 
 	private int turnSign;
 

@@ -40,11 +40,14 @@ public class SpawnerScript : SingletonBaseScript<SpawnerScript> {
 		// Make list
 		List<Obstruction> obs = new List<Obstruction>();
 		obs.Add(new Obstruction(camMin.x, camMax.x));
+		/*/ Skip the enemies, they don't collide with each other anyway
 		if (entityMargin > 0) {
 			foreach (BaseAI enemy in FindObjectsOfType<BaseAI>()) {
-				obs.Add(new Obstruction(enemy.transform.position.x - entityMargin, enemy.transform.position.x + entityMargin));
+				if (!enemy.dead)
+					obs.Add(new Obstruction(enemy.transform.position.x - entityMargin, enemy.transform.position.x + entityMargin));
 			}
 		}
+		*/
 
 		// Compress
 		bool change;
@@ -168,14 +171,16 @@ public class SpawnerScript : SingletonBaseScript<SpawnerScript> {
 		if (x >= camMin.x && x <= camMax.x)
 			return false;
 
-		// Collides with entity?
+		/*/ Collides with entity?
+		// SKIPPED
 		if (entityMargin > 0) {
 			foreach (BaseAI enemy in FindObjectsOfType<BaseAI>()) {
 				float enemyX = enemy.transform.position.x;
-				if (x > enemyX - entityMargin && x < enemyX + entityMargin)
+				if (x > enemyX - entityMargin && x < enemyX + entityMargin && !enemy.dead)
 					return false;
 			}
 		}
+		//*/
 
 		// It's valid
 		return true;
