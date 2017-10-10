@@ -2,18 +2,18 @@
 
 ## Lore/Story
 
-<ul><i>"In the beginning, the order of <b>life</b> and <b>death</b> was created. They moved at equal rate, where one rises the other decays.<br/>
-
-But as time passed, the balance, their uniform match, began to vaporize.
+> <i>"In the beginning, the order of <b>life</b> and <b>death</b> was created. They moved at equal rate, where one rises the other decays.<br/>
+>
+> But as time passed, the balance, their uniform match, began to vaporize.
 Compared to death, lifes difference began to grow.<br/>
-
-As death idly observed while carrying its duty, death realized that with enough time,
-life will grow to the level so death will be rendered gone, so death would to a degree cease to exist.<br/>
-
-An action is needed. An action of desperate measures. One that only <b>the controller</b> could deal with.<br/>
-
-The controller ordered prophecies, where death would level life so the order would be stable.<br/>
-This method is called <b>'a pulse'</b>, in where death would beifly explode, to consume a chunk of life, sabotage it from the inside, to restore balance."</i></ul>
+>
+> As death idly observed while carrying its duty, death realized that with enough time,
+> life will grow to the level so death will be rendered gone, so death would to a degree cease to exist.<br/>
+>
+> An action is needed. An action of desperate measures. One that only <b>the controller</b> could deal with.<br/>
+>
+> The controller ordered prophecies, where death would level life so the order would be stable.<br/>
+> This method is called <b>'a pulse'</b>, in where death would beifly explode, to consume a chunk of life, sabotage it from the inside, to restore balance."</i></ul>
 
 <br/>
 The player controls a character of life, tainted by deaths call, aimed to fulfil the prophecy.
